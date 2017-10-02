@@ -7,17 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent() {
     }
+    AppComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'my-app',
+            template: "\n        <div class=\"container\">\n            <nav>\n                <a>Navigation:</a>\n                <ul>\n                    <li><a [routerLink]=\"['jokes']\">Jokes</a></li>\n                    <li><a [routerLink]=\"['di-test']\">DI Test</a></li>\n                    <li><a [routerLink]=\"['users']\">Users</a></li>\n                    <!--<li><a [routerLink]=\"['itunes-search']\">iTunes Search</a></li>-->\n                </ul>\n            </nav>\n            <router-outlet></router-outlet>\n        </div>\n    ",
+        })
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'my-app',
-        template: "\n        <div class=\"container\">\n            <nav>\n                <a>Navigation:</a>\n                <ul>\n                    <li><a [routerLink]=\"['jokes']\">Jokes</a></li>\n                    <li><a [routerLink]=\"['di-test']\">DI Test</a></li>\n                    <li><a [routerLink]=\"['users']\">Users</a></li>\n                    <!--<li><a [routerLink]=\"['itunes-search']\">iTunes Search</a></li>-->\n                </ul>\n            </nav>\n            <router-outlet></router-outlet>\n        </div>\n    ",
-    })
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

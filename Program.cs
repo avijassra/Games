@@ -17,6 +17,7 @@ namespace Games
                 .UseIISIntegration()
                 .UseWebRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:5050")
                 .Build();
 
             host.Run();
