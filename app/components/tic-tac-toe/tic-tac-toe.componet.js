@@ -14,10 +14,8 @@ var TicTacToeComponent = /** @class */ (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'parent-di',
-            template: "my game",
-            styles: [
-                '.parent { background-color: #D0E751; padding: 10px; } '
-            ]
+            templateUrl: 'tic-tac-toe.component.html',
+            styles: ["  \n                .ttt-g table { margin: 0px auto; float: none; }\n                .ttt-g table tr td { width: 150px !important; height: 150px !important; border: 2px solid #000; }\n                .ttt-g table tr td:first-child { border-left: none;}\n                .ttt-g table tr:first-child td { border-top: none;}\n                .ttt-g table tr td:last-child { border-right: none;}\n                .ttt-g table tr:last-child td { border-bottom: none;}"]
         })
     ], TicTacToeComponent);
     return TicTacToeComponent;
