@@ -3,19 +3,19 @@
     <div class="row top20">
         <table>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td (click)="ticOrTac(0,0)" ><i class="fa fa-lg" [ngClass]="{'fa-times': this.grid[0][0] === 1, 'fa-circle-o': this.grid[0][0] === 0 }" ></i></td>
+                <td (click)="ticOrTac(0,1)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[0][1] === 1, 'fa-circle-o': this.grid[0][1] === 0 }" ></i></td>
+                <td (click)="ticOrTac(0,2)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[0][2] === 1, 'fa-circle-o': this.grid[0][2] === 0 }" ></i></td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td (click)="ticOrTac(1,0)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[1][0] === 1, 'fa-circle-o': this.grid[1][0] === 0 }" ></i></td>
+                <td (click)="ticOrTac(1,1)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[1][1] === 1, 'fa-circle-o': this.grid[1][1] === 0 }" ></i></td>
+                <td (click)="ticOrTac(1,2)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[1][2] === 1, 'fa-circle-o': this.grid[1][2] === 0 }" ></i></td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td (click)="ticOrTac(2,0)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[2][0] === 1, 'fa-circle-o': this.grid[2][0] === 0 }" ></i></td>
+                <td (click)="ticOrTac(2,1)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[2][1] === 1, 'fa-circle-o': this.grid[2][1] === 0 }" ></i></td>
+                <td (click)="ticOrTac(2,2)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[2][2] === 1, 'fa-circle-o': this.grid[2][2] === 0 }" ></i></td>
             </tr>
         </table>
     </div>
