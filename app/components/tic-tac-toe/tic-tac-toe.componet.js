@@ -30,7 +30,7 @@ var TicTacToeComponent = /** @class */ (function () {
             moduleId: module.id,
             selector: 'parent-di',
             templateUrl: 'tic-tac-toe.component.html',
-            styles: ["  \n                .ttt-g table { margin: 0px auto; float: none; }\n                .ttt-g table tr td { width: 100px !important; height: 100px !important; border: 3px solid #000; }\n                .ttt-g table tr td:first-child { border-left: none;}\n                .ttt-g table tr:first-child td { border-top: none;}\n                .ttt-g table tr td:last-child { border-right: none;}\n                .ttt-g table tr:last-child td { border-bottom: none;}"]
+            styles: ["  .ttt-g table tr td { font-size: 70px }\n                .ttt-g table { margin: 0px auto; float: none; }\n                .ttt-g table tr td { width: 100px !important; height: 100px !important; border: 3px solid #000; }\n                .ttt-g table tr td:first-child { border-left: none;}\n                .ttt-g table tr:first-child td { border-top: none;}\n                .ttt-g table tr td:last-child { border-right: none;}\n                .ttt-g table tr:last-child td { border-bottom: none;}\n                "]
         }),
         __metadata("design:paramtypes", [])
     ], TicTacToeComponent);

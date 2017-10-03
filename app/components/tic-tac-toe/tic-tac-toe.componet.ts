@@ -4,13 +4,14 @@ import { Component } from '@angular/core';
     moduleId: module.id,
     selector: 'parent-di',
     templateUrl: 'tic-tac-toe.component.html',
-    styles: [`  
+    styles: [`  .ttt-g table tr td { font-size: 70px }
                 .ttt-g table { margin: 0px auto; float: none; }
                 .ttt-g table tr td { width: 100px !important; height: 100px !important; border: 3px solid #000; }
                 .ttt-g table tr td:first-child { border-left: none;}
                 .ttt-g table tr:first-child td { border-top: none;}
                 .ttt-g table tr td:last-child { border-right: none;}
-                .ttt-g table tr:last-child td { border-bottom: none;}`]
+                .ttt-g table tr:last-child td { border-bottom: none;}
+                `]
 })
 export class TicTacToeComponent {
     isPlayer1 = true;

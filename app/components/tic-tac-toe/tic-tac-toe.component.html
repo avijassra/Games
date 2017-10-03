@@ -1,25 +1,39 @@
 <div class="ttt-g">
-    <div class="row text-center top10">Play</div>
-    <div class="row top20">
-        <table>
+    <div class="row text-center top15 well">
+        <div class="col-md-4" [ngClass]="{ 'text-danger': isPlayer1 }">
+            <p >Player 1</p>
+            <p></p>
+        </div>
+        <div class="col-md-4">
+            <p>Draw</p>
+            <p></p>
+        </div>
+        <div class="col-md-4" [ngClass]="{ 'text-danger': !isPlayer1 }">
+            <p >Player 2</p>
+            <p></p>
+        </div>
+    </div>
+    <div class="row top15"></div>
+    <div class="row top15">
+        <table class="text-center">
             <tr>
-                <td (click)="ticOrTac(0,0)" ><i class="fa fa-lg" [ngClass]="{'fa-times': this.grid[0][0] === 1, 'fa-circle-o': this.grid[0][0] === 0 }" ></i></td>
-                <td (click)="ticOrTac(0,1)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[0][1] === 1, 'fa-circle-o': this.grid[0][1] === 0 }" ></i></td>
-                <td (click)="ticOrTac(0,2)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[0][2] === 1, 'fa-circle-o': this.grid[0][2] === 0 }" ></i></td>
+                <td (click)="ticOrTac(0,0)" ><i class="fa fa-lg" [ngClass]="{'fa-window-close ': this.grid[0][0] === 1, 'fa-circle-o': this.grid[0][0] === 0 }" ></i></td>
+                <td (click)="ticOrTac(0,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[0][1] === 1, 'fa-circle-o': this.grid[0][1] === 0 }" ></i></td>
+                <td (click)="ticOrTac(0,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[0][2] === 1, 'fa-circle-o': this.grid[0][2] === 0 }" ></i></td>
             </tr>
             <tr>
-                <td (click)="ticOrTac(1,0)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[1][0] === 1, 'fa-circle-o': this.grid[1][0] === 0 }" ></i></td>
-                <td (click)="ticOrTac(1,1)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[1][1] === 1, 'fa-circle-o': this.grid[1][1] === 0 }" ></i></td>
-                <td (click)="ticOrTac(1,2)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[1][2] === 1, 'fa-circle-o': this.grid[1][2] === 0 }" ></i></td>
+                <td (click)="ticOrTac(1,0)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][0] === 1, 'fa-circle-o': this.grid[1][0] === 0 }" ></i></td>
+                <td (click)="ticOrTac(1,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][1] === 1, 'fa-circle-o': this.grid[1][1] === 0 }" ></i></td>
+                <td (click)="ticOrTac(1,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][2] === 1, 'fa-circle-o': this.grid[1][2] === 0 }" ></i></td>
             </tr>
             <tr>
-                <td (click)="ticOrTac(2,0)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[2][0] === 1, 'fa-circle-o': this.grid[2][0] === 0 }" ></i></td>
-                <td (click)="ticOrTac(2,1)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[2][1] === 1, 'fa-circle-o': this.grid[2][1] === 0 }" ></i></td>
-                <td (click)="ticOrTac(2,2)"><i class="fa fa-lg"  [ngClass]="{'fa-times': this.grid[2][2] === 1, 'fa-circle-o': this.grid[2][2] === 0 }" ></i></td>
+                <td (click)="ticOrTac(2,0)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][0] === 1, 'fa-circle-o': this.grid[2][0] === 0 }" ></i></td>
+                <td (click)="ticOrTac(2,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][1] === 1, 'fa-circle-o': this.grid[2][1] === 0 }" ></i></td>
+                <td (click)="ticOrTac(2,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][2] === 1, 'fa-circle-o': this.grid[2][2] === 0 }" ></i></td>
             </tr>
         </table>
     </div>
-    <div class="row top20">
+    <div class="row top15">
 
     </div>
 </div>
