@@ -7,17 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+var Puzzle2048Component = /** @class */ (function () {
+    function Puzzle2048Component() {
     }
-    AppComponent = __decorate([
+    Puzzle2048Component = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: 'app.component.html',
+            selector: 'Puzzle2048',
+            template: "2048 game",
+            styles: ['.parent { background-color: #D0E751; padding: 10px; } ']
         })
-    ], AppComponent);
-    return AppComponent;
+    ], Puzzle2048Component);
+    return Puzzle2048Component;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.Puzzle2048Component = Puzzle2048Component;
+//# sourceMappingURL=2048.componet.js.map

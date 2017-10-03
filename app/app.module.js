@@ -14,13 +14,14 @@ var router_1 = require("@angular/router");
 // components
 var app_component_1 = require("./app.component");
 var tic_tac_toe_componet_1 = require("./components/tic-tac-toe/tic-tac-toe.componet");
+var _2048_componet_1 = require("./components/2048/2048.componet");
 // directive
 // Model
 //Service
 var routes = [
-    { path: '', redirectTo: 'jokes', pathMatch: 'full' },
+    { path: '', redirectTo: 'ticTacToe', pathMatch: 'full' },
     { path: 'tictactoe', component: tic_tac_toe_componet_1.TicTacToeComponent },
-    // { path: 'di-test', component: ParentDiContainerComponent },
+    { path: '2048', component: _2048_componet_1.Puzzle2048Component },
     // { path: 'users', component: UserComponent },
     // { path: 'itunes-search', component: ItunesSearchComponent },
     { path: '**', component: tic_tac_toe_componet_1.TicTacToeComponent }
@@ -41,7 +42,8 @@ var AppModule = /** @class */ (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                tic_tac_toe_componet_1.TicTacToeComponent
+                tic_tac_toe_componet_1.TicTacToeComponent,
+                _2048_componet_1.Puzzle2048Component
             ],
             providers: [],
         })

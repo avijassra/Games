@@ -14,7 +14,7 @@ var TicTacToeComponent = /** @class */ (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'parent-di',
-            template: "\n        <div class=\"parent\" >\n            <p>Parent DI</p>\n            <form novalidation>\n                <div class=\"form-group\" >\n                    Hello World    \n                </div>\n            </form>\n        </div>\n    ",
+            template: "my game",
             styles: [
                 '.parent { background-color: #D0E751; padding: 10px; } '
             ]
