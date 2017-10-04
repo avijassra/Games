@@ -17,19 +17,19 @@
     <div class="row top15">
         <table class="text-center">
             <tr>
-                <td (click)="ticOrTac(0,0)" ><i class="fa fa-lg" [ngClass]="{'fa-window-close ': this.grid[0][0] === 1, 'fa-circle-o': this.grid[0][0] === 0 }" ></i></td>
-                <td (click)="ticOrTac(0,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[0][1] === 1, 'fa-circle-o': this.grid[0][1] === 0 }" ></i></td>
-                <td (click)="ticOrTac(0,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[0][2] === 1, 'fa-circle-o': this.grid[0][2] === 0 }" ></i></td>
+                <td (click)="ticOrTac(0,0)" ><i class="fa fa-lg" [ngClass]="{'fa-window-close ': this.grid[0][0].Marked === 1, 'fa-circle-o': this.grid[0][0].Marked === 0, 'text-danger': this.grid[0][0].IsWinningSeqeunce }" ></i></td>
+                <td (click)="ticOrTac(0,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[0][1].Marked === 1, 'fa-circle-o': this.grid[0][1].Marked === 0, 'text-danger': this.grid[0][1].IsWinningSeqeunce }" ></i></td>
+                <td (click)="ticOrTac(0,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[0][2].Marked === 1, 'fa-circle-o': this.grid[0][2].Marked === 0, 'text-danger': this.grid[0][2].IsWinningSeqeunce }" ></i></td>
             </tr>
             <tr>
-                <td (click)="ticOrTac(1,0)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][0] === 1, 'fa-circle-o': this.grid[1][0] === 0 }" ></i></td>
-                <td (click)="ticOrTac(1,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][1] === 1, 'fa-circle-o': this.grid[1][1] === 0 }" ></i></td>
-                <td (click)="ticOrTac(1,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][2] === 1, 'fa-circle-o': this.grid[1][2] === 0 }" ></i></td>
+                <td (click)="ticOrTac(1,0)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][0].Marked === 1, 'fa-circle-o': this.grid[1][0].Marked === 0, 'text-danger': this.grid[1][0].IsWinningSeqeunce }" ></i></td>
+                <td (click)="ticOrTac(1,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][1].Marked === 1, 'fa-circle-o': this.grid[1][1].Marked === 0, 'text-danger': this.grid[1][1].IsWinningSeqeunce }" ></i></td>
+                <td (click)="ticOrTac(1,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[1][2].Marked === 1, 'fa-circle-o': this.grid[1][2].Marked === 0, 'text-danger': this.grid[1][2].IsWinningSeqeunce }" ></i></td>
             </tr>
             <tr>
-                <td (click)="ticOrTac(2,0)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][0] === 1, 'fa-circle-o': this.grid[2][0] === 0 }" ></i></td>
-                <td (click)="ticOrTac(2,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][1] === 1, 'fa-circle-o': this.grid[2][1] === 0 }" ></i></td>
-                <td (click)="ticOrTac(2,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][2] === 1, 'fa-circle-o': this.grid[2][2] === 0 }" ></i></td>
+                <td (click)="ticOrTac(2,0)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][0].Marked === 1, 'fa-circle-o': this.grid[2][0].Marked === 0, 'text-danger': this.grid[2][0].IsWinningSeqeunce }" ></i></td>
+                <td (click)="ticOrTac(2,1)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][1].Marked === 1, 'fa-circle-o': this.grid[2][1].Marked === 0, 'text-danger': this.grid[2][1].IsWinningSeqeunce }" ></i></td>
+                <td (click)="ticOrTac(2,2)"><i class="fa fa-lg"  [ngClass]="{'fa-window-close ': this.grid[2][2].Marked === 1, 'fa-circle-o': this.grid[2][2].Marked === 0, 'text-danger': this.grid[2][2].IsWinningSeqeunce }" ></i></td>
             </tr>
         </table>
     </div>

@@ -23,7 +23,9 @@
     "core-js":"~2.5.1",
     "reflect-metadata":"~0.1.10",
     "rxjs":"~5.4.3",
-    "zone.js":"~0.8.18"
+    "zone.js":"~0.8.18",
+
+    "lodash": "~4.17.4"
   },
   "devDependencies": {
     "concurrently":"~3.5.0",

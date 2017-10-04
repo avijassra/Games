@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ITicTacToeModel, TicTacToeModel } from '../../models/tic-tac-toe.model';
+
 
 @Component({
     moduleId: module.id,
@@ -14,22 +16,36 @@ import { Component } from '@angular/core';
                 `]
 })
 export class TicTacToeComponent {
-    isPlayer1 = true;
-    grid: number[][];
+    gridSize = 3;
+    isGameOn: true;
+    isPlayer1? = true;
+    grid: ITicTacToeModel[][];
 
     constructor() {
         this.grid = [];
-        for(let i = 0; i < 3; i++) {
+        for(let i = 0; i < this.gridSize; i++) {
             this.grid[i] = [];
+            for(let j = 0; j < this.gridSize; j++) {
+                this.grid[i][j] = new TicTacToeModel();
+            }
         }
     }
 
     ticOrTac(row:number, col:number): void {
-        this.grid[row][col] = (this.isPlayer1 ? 1 : 0)
-        this.isPlayer1 = !this.isPlayer1;
+        if(this.isGameOn) {
+            this.grid[row][col].Marked = (this.isPlayer1 ? 1 : 0)
+            
+            if(this.checkForWinningSequence()) {
+                this.isPlayer1 = null;
+            } else {
+                this.isPlayer1 = !this.isPlayer1;
+            }
+        }
     }
 
-    getCssClass(row:number, col: number): string {
-        return ((this.isPlayer1 && (this.grid[row][col] === 1 || this.grid[row][col] === 0)) ? "fa-times" : "fa-circle-o");
+    checkForWinningSequence(): boolean {
+        
+
+        return false;
     }
 }

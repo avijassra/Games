@@ -10,20 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var tic_tac_toe_model_1 = require("../../models/tic-tac-toe.model");
 var TicTacToeComponent = /** @class */ (function () {
     function TicTacToeComponent() {
+        this.gridSize = 3;
         this.isPlayer1 = true;
         this.grid = [];
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < this.gridSize; i++) {
             this.grid[i] = [];
+            for (var j = 0; j < this.gridSize; j++) {
+                this.grid[i][j] = new tic_tac_toe_model_1.TicTacToeModel();
+            }
         }
     }
     TicTacToeComponent.prototype.ticOrTac = function (row, col) {
-        this.grid[row][col] = (this.isPlayer1 ? 1 : 0);
-        this.isPlayer1 = !this.isPlayer1;
+        if (this.isGameOn) {
+            this.grid[row][col].Marked = (this.isPlayer1 ? 1 : 0);
+            if (this.checkForWinningSequence()) {
+                this.isPlayer1 = null;
+            }
+            else {
+                this.isPlayer1 = !this.isPlayer1;
+            }
+        }
     };
-    TicTacToeComponent.prototype.getCssClass = function (row, col) {
-        return ((this.isPlayer1 && (this.grid[row][col] === 1 || this.grid[row][col] === 0)) ? "fa-times" : "fa-circle-o");
+    TicTacToeComponent.prototype.checkForWinningSequence = function () {
+        return false;
     };
     TicTacToeComponent = __decorate([
         core_1.Component({
