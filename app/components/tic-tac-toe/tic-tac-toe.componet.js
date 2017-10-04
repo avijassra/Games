@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var tic_tac_toe_model_1 = require("../../models/tic-tac-toe.model");
+var _ = require("lodash");
 var TicTacToeComponent = /** @class */ (function () {
     function TicTacToeComponent() {
         this.gridSize = 3;
@@ -38,18 +39,19 @@ var TicTacToeComponent = /** @class */ (function () {
         }
     };
     TicTacToeComponent.prototype.checkForWinningSequence = function (row, col, markedVal) {
-        // var rowCheck = _.filter(this.grid[row], {Marked: markedVal});
-        // if(rowCheck.length === this.gridSize) {
-        //     _.forEach(rowCheck, (item) => item.IsWinningSequence = true)
-        //     this.grid[row] = rowCheck;
-        //     return true;
-        // }
-        // var colCheck = _.filter(this.grid, (row) => { return (row[col].Marked === markedVal);});
-        // if(colCheck.length === this.gridSize) {
-        //     _.forEach(colCheck, (item) => item.IsWinningSequence = true)
-        //     this.grid[row] = rowCheck;
-        //     return true;
-        // }
+        debugger;
+        var rowCheck = _.filter(this.grid[row], { Marked: markedVal });
+        if (rowCheck.length === this.gridSize) {
+            _.forEach(rowCheck, function (item) { return item.IsWinningSequence = true; });
+            this.grid[row] = rowCheck;
+            return true;
+        }
+        var colCheck = _.filter(this.grid, function (row) { return (row[col].Marked === markedVal); });
+        if (colCheck.length === this.gridSize) {
+            _.forEach(colCheck, function (row) { return row[col].IsWinningSequence = true; });
+            this.grid[row] = rowCheck;
+            return true;
+        }
         // var isVerticalSeq = true;
         // var isHorizontalSeq = true;
         // var isDiagonalSeq = true;

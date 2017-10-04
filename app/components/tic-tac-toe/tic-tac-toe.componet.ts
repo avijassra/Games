@@ -46,21 +46,22 @@ export class TicTacToeComponent {
     }
 
     checkForWinningSequence(row:number, col:number, markedVal: number): boolean {
-        // var rowCheck = _.filter(this.grid[row], {Marked: markedVal});
+        debugger;
+        var rowCheck = _.filter(this.grid[row], {Marked: markedVal});
         
-        // if(rowCheck.length === this.gridSize) {
-        //     _.forEach(rowCheck, (item) => item.IsWinningSequence = true)
-        //     this.grid[row] = rowCheck;
-        //     return true;
-        // }
+        if(rowCheck.length === this.gridSize) {
+            _.forEach(rowCheck, (item) => item.IsWinningSequence = true)
+            this.grid[row] = rowCheck;
+            return true;
+        }
 
-        // var colCheck = _.filter(this.grid, (row) => { return (row[col].Marked === markedVal);});
+        var colCheck = _.filter(this.grid, (row) => { return (row[col].Marked === markedVal);});
         
-        // if(colCheck.length === this.gridSize) {
-        //     _.forEach(colCheck, (item) => item.IsWinningSequence = true)
-        //     this.grid[row] = rowCheck;
-        //     return true;
-        // }
+        if(colCheck.length === this.gridSize) {
+            _.forEach(colCheck, (row) => row[col].IsWinningSequence = true)
+            this.grid[row] = rowCheck;
+            return true;
+        }
 
 
         // var isVerticalSeq = true;
