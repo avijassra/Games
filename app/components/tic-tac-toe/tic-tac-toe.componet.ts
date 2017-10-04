@@ -56,7 +56,6 @@ export class TicTacToeComponent {
         }
 
         var colCheck = _.filter(this.grid, (row) => { return (row[col].Marked === markedVal);});
-        
         if(colCheck.length === this.gridSize) {
             _.forEach(colCheck, (row) => row[col].IsWinningSequence = true)
             this.grid[row] = rowCheck;
