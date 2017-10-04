@@ -14,6 +14,7 @@ var tic_tac_toe_model_1 = require("../../models/tic-tac-toe.model");
 var TicTacToeComponent = /** @class */ (function () {
     function TicTacToeComponent() {
         this.gridSize = 3;
+        this.isGameOn = true;
         this.isPlayer1 = true;
         this.grid = [];
         for (var i = 0; i < this.gridSize; i++) {
@@ -24,9 +25,11 @@ var TicTacToeComponent = /** @class */ (function () {
         }
     }
     TicTacToeComponent.prototype.ticOrTac = function (row, col) {
+        debugger;
         if (this.isGameOn) {
-            this.grid[row][col].Marked = (this.isPlayer1 ? 1 : 0);
-            if (this.checkForWinningSequence()) {
+            var markedVal = (this.isPlayer1 ? 1 : 0);
+            this.grid[row][col].Marked = markedVal;
+            if (this.checkForWinningSequence(row, col, markedVal)) {
                 this.isPlayer1 = null;
             }
             else {
@@ -34,7 +37,24 @@ var TicTacToeComponent = /** @class */ (function () {
             }
         }
     };
-    TicTacToeComponent.prototype.checkForWinningSequence = function () {
+    TicTacToeComponent.prototype.checkForWinningSequence = function (row, col, markedVal) {
+        // var rowCheck = _.filter(this.grid[row], {Marked: markedVal});
+        // if(rowCheck.length === this.gridSize) {
+        //     _.forEach(rowCheck, (item) => item.IsWinningSequence = true)
+        //     this.grid[row] = rowCheck;
+        //     return true;
+        // }
+        // var colCheck = _.filter(this.grid, (row) => { return (row[col].Marked === markedVal);});
+        // if(colCheck.length === this.gridSize) {
+        //     _.forEach(colCheck, (item) => item.IsWinningSequence = true)
+        //     this.grid[row] = rowCheck;
+        //     return true;
+        // }
+        // var isVerticalSeq = true;
+        // var isHorizontalSeq = true;
+        // var isDiagonalSeq = true;
+        // _.forEach(this.grid, function(row) {
+        // });
         return false;
     };
     TicTacToeComponent = __decorate([

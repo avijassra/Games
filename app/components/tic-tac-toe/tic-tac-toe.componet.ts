@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ITicTacToeModel, TicTacToeModel } from '../../models/tic-tac-toe.model';
-
+import * as _ from "lodash";
 
 @Component({
     moduleId: module.id,
@@ -17,7 +17,7 @@ import { ITicTacToeModel, TicTacToeModel } from '../../models/tic-tac-toe.model'
 })
 export class TicTacToeComponent {
     gridSize = 3;
-    isGameOn: true;
+    isGameOn = true;
     isPlayer1? = true;
     grid: ITicTacToeModel[][];
 
@@ -32,10 +32,12 @@ export class TicTacToeComponent {
     }
 
     ticOrTac(row:number, col:number): void {
+        debugger;
         if(this.isGameOn) {
-            this.grid[row][col].Marked = (this.isPlayer1 ? 1 : 0)
+            var markedVal = (this.isPlayer1 ? 1 : 0);
+            this.grid[row][col].Marked = markedVal;
             
-            if(this.checkForWinningSequence()) {
+            if(this.checkForWinningSequence(row, col, markedVal)) {
                 this.isPlayer1 = null;
             } else {
                 this.isPlayer1 = !this.isPlayer1;
@@ -43,8 +45,31 @@ export class TicTacToeComponent {
         }
     }
 
-    checkForWinningSequence(): boolean {
+    checkForWinningSequence(row:number, col:number, markedVal: number): boolean {
+        // var rowCheck = _.filter(this.grid[row], {Marked: markedVal});
         
+        // if(rowCheck.length === this.gridSize) {
+        //     _.forEach(rowCheck, (item) => item.IsWinningSequence = true)
+        //     this.grid[row] = rowCheck;
+        //     return true;
+        // }
+
+        // var colCheck = _.filter(this.grid, (row) => { return (row[col].Marked === markedVal);});
+        
+        // if(colCheck.length === this.gridSize) {
+        //     _.forEach(colCheck, (item) => item.IsWinningSequence = true)
+        //     this.grid[row] = rowCheck;
+        //     return true;
+        // }
+
+
+        // var isVerticalSeq = true;
+        // var isHorizontalSeq = true;
+        // var isDiagonalSeq = true;
+
+        // _.forEach(this.grid, function(row) {
+
+        // });
 
         return false;
     }
