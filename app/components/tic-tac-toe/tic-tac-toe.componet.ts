@@ -20,7 +20,6 @@ export class TicTacToeComponent {
     isGameOn = true;
     isPlayer1? = true;
     grid: ITicTacToeModel[][];
-    winningClass: string;
 
     constructor() {
         this.grid = [];
@@ -33,7 +32,6 @@ export class TicTacToeComponent {
     }
 
     ticOrTac(row:number, col:number): void {
-        debugger;
         if(this.isGameOn && this.grid[row][col].Marked === -1) {
             var markedVal = (this.isPlayer1 ? 1 : 0);
             this.grid[row][col].Marked = markedVal;
@@ -48,20 +46,27 @@ export class TicTacToeComponent {
     }
 
     checkForWinningSequence(row:number, col:number, markedVal: number): boolean {
-        var rowCheck = _.filter(this.grid[row], {Marked: markedVal});
-        
-        if(rowCheck.length === this.gridSize) {
-            _.forEach(rowCheck, (rowItem) => rowItem.IsWinningSequence = true)
-            this.grid[row] = rowCheck;
-            return true;
-        }
+        _.forEach(this.grid, (rowItem) => {
+            
 
-        var colCheck = _.filter(this.grid, (rowItem) => { return (rowItem[col].Marked === markedVal);});
-        if(colCheck.length === this.gridSize) {
-            //_.forEach(colCheck, (rowItem) => rowItem[col].IsWinningSequence = true)
-            //this.grid[row] = rowCheck;
-            return true;
-        }
+            _.forEach(rowItem, (cellItem) => {
+
+            });
+        });
+
+        //var rowCheck = _.filter(this.grid[row], {Marked: markedVal});
+        // if(rowCheck.length === this.gridSize) {
+        //     _.forEach(rowCheck, (rowItem) => rowItem.IsWinningSequence = true)
+        //     this.grid[row] = rowCheck;
+        //     return true;
+        // }
+
+        // var colCheck = _.filter(this.grid, (rowItem) => { return (rowItem[col].Marked === markedVal);});
+        // if(colCheck.length === this.gridSize) {
+        //     //_.forEach(colCheck, (rowItem) => rowItem[col].IsWinningSequence = true)
+        //     //this.grid[row] = rowCheck;
+        //     return true;
+        // }
 
 
         // var isVerticalSeq = true;
