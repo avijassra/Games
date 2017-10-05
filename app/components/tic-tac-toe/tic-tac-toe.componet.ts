@@ -20,6 +20,7 @@ export class TicTacToeComponent {
     isGameOn = true;
     isPlayer1? = true;
     grid: ITicTacToeModel[][];
+    winningClass: string;
 
     constructor() {
         this.grid = [];
@@ -33,12 +34,13 @@ export class TicTacToeComponent {
 
     ticOrTac(row:number, col:number): void {
         debugger;
-        if(this.isGameOn) {
+        if(this.isGameOn && this.grid[row][col].Marked === -1) {
             var markedVal = (this.isPlayer1 ? 1 : 0);
             this.grid[row][col].Marked = markedVal;
             
             if(this.checkForWinningSequence(row, col, markedVal)) {
                 this.isPlayer1 = null;
+                this.isGameOn = false;
             } else {
                 this.isPlayer1 = !this.isPlayer1;
             }
@@ -46,19 +48,18 @@ export class TicTacToeComponent {
     }
 
     checkForWinningSequence(row:number, col:number, markedVal: number): boolean {
-        debugger;
         var rowCheck = _.filter(this.grid[row], {Marked: markedVal});
         
         if(rowCheck.length === this.gridSize) {
-            _.forEach(rowCheck, (item) => item.IsWinningSequence = true)
+            _.forEach(rowCheck, (rowItem) => rowItem.IsWinningSequence = true)
             this.grid[row] = rowCheck;
             return true;
         }
 
-        var colCheck = _.filter(this.grid, (row) => { return (row[col].Marked === markedVal);});
+        var colCheck = _.filter(this.grid, (rowItem) => { return (rowItem[col].Marked === markedVal);});
         if(colCheck.length === this.gridSize) {
-            _.forEach(colCheck, (row) => row[col].IsWinningSequence = true)
-            this.grid[row] = rowCheck;
+            //_.forEach(colCheck, (rowItem) => rowItem[col].IsWinningSequence = true)
+            //this.grid[row] = rowCheck;
             return true;
         }
 

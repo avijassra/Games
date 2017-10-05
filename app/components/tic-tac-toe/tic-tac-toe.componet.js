@@ -27,11 +27,12 @@ var TicTacToeComponent = /** @class */ (function () {
     }
     TicTacToeComponent.prototype.ticOrTac = function (row, col) {
         debugger;
-        if (this.isGameOn) {
+        if (this.isGameOn && this.grid[row][col].Marked === -1) {
             var markedVal = (this.isPlayer1 ? 1 : 0);
             this.grid[row][col].Marked = markedVal;
             if (this.checkForWinningSequence(row, col, markedVal)) {
                 this.isPlayer1 = null;
+                this.isGameOn = false;
             }
             else {
                 this.isPlayer1 = !this.isPlayer1;
@@ -39,17 +40,16 @@ var TicTacToeComponent = /** @class */ (function () {
         }
     };
     TicTacToeComponent.prototype.checkForWinningSequence = function (row, col, markedVal) {
-        debugger;
         var rowCheck = _.filter(this.grid[row], { Marked: markedVal });
         if (rowCheck.length === this.gridSize) {
-            _.forEach(rowCheck, function (item) { return item.IsWinningSequence = true; });
+            _.forEach(rowCheck, function (rowItem) { return rowItem.IsWinningSequence = true; });
             this.grid[row] = rowCheck;
             return true;
         }
-        var colCheck = _.filter(this.grid, function (row) { return (row[col].Marked === markedVal); });
+        var colCheck = _.filter(this.grid, function (rowItem) { return (rowItem[col].Marked === markedVal); });
         if (colCheck.length === this.gridSize) {
-            _.forEach(colCheck, function (row) { return row[col].IsWinningSequence = true; });
-            this.grid[row] = rowCheck;
+            //_.forEach(colCheck, (rowItem) => rowItem[col].IsWinningSequence = true)
+            //this.grid[row] = rowCheck;
             return true;
         }
         // var isVerticalSeq = true;
