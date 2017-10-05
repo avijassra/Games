@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var TicTacToeModel = /** @class */ (function () {
     function TicTacToeModel() {
-        this.Marked = -1;
+        this.Marked = null;
         this.IsWinningSequence = false;
     }
     return TicTacToeModel;

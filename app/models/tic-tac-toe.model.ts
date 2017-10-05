@@ -1,14 +1,14 @@
 export interface ITicTacToeModel {
-    Marked: number;
+    Marked?: boolean;
     IsWinningSequence: boolean;
 }
 
 export class TicTacToeModel implements ITicTacToeModel {
-    public Marked: number;
+    public Marked?: boolean;
     public IsWinningSequence: boolean;
 
     constructor() {
-        this.Marked = -1;
+        this.Marked = null;
         this.IsWinningSequence = false;
     }
 }
