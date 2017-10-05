@@ -46,8 +46,10 @@ export class TicTacToeComponent {
     }
 
     checkForWinningSequence(row:number, col:number, markedVal: number): boolean {
+        
+        
         _.forEach(this.grid, (rowItem) => {
-            
+
 
             _.forEach(rowItem, (cellItem) => {
 
