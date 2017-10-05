@@ -32,7 +32,6 @@ export class TicTacToeComponent {
     }
 
     ticOrTac(row:number, col:number): void {
-        debugger;
         if(this.isGameOn && this.grid[row][col].Marked === null) {
             this.grid[row][col].Marked = this.isPlayer1;
             
@@ -59,12 +58,12 @@ export class TicTacToeComponent {
         }
 
         // checking the diagonal winning sequence
-        if((row === 0 || row === this.gridSize -1) && (col === 0 || col === this.gridSize)) {
-            if(row === col && (!_.some(this.grid, (rowItem, index) => this.grid[index][index].Marked !== markedVal))) {
-                _.forEach(this.grid, (rowItem, index) => rowItem[index][index].IsWinningSequence = true );
+        if((row === col || (row === ((this.gridSize - 1) - col))) || (col === ((this.gridSize - 1) - row))) {
+            if(row === col && (!_.some(this.grid, (rowItem, index) => rowItem[index].Marked !== markedVal))) {
+                _.forEach(this.grid, (rowItem, index) => rowItem[index].IsWinningSequence = true );
                 return true;
-            } else if(!_.some(this.grid, (rowItem, index) => this.grid[index][(this.gridSize - 1) - index].Marked !== markedVal)) {
-                _.forEach(this.grid, (rowItem, index) => rowItem[index][(this.gridSize - 1) - index].IsWinningSequence = true );
+            } else if(!_.some(this.grid, (rowItem, index) => rowItem[(this.gridSize - 1) - index].Marked !== markedVal)) {
+                _.forEach(this.grid, (rowItem, index) => rowItem[(this.gridSize - 1) - index].IsWinningSequence = true );
                 return true;
             }
         }
