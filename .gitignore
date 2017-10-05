@@ -3,4 +3,5 @@ node_modules/
 bin/
 obj/
 *.log
-
+app/**/*.js
+app/**/*.js.map
