@@ -18,10 +18,23 @@ import * as _ from "lodash";
 export class TicTacToeComponent {
     gridSize = 3;
     isGameOn = true;
-    isPlayer1? = true;
+    isPlayer1?: boolean = null;
+    totalGamesPlayed = 0;
+    noWinner = 0;
+    player1Score = 0;
+    player2Score = 0;
     grid: ITicTacToeModel[][];
+    noOfCellsMarkedInGame = 0;
+    winningPlayer: string;
 
     constructor() {
+        this.resetGrid();
+    }
+
+    resetGrid(): void {
+        this.isGameOn = true;
+        this.winningPlayer = null;
+        this.noOfCellsMarkedInGame = 0;
         this.grid = [];
         for(let i = 0; i < this.gridSize; i++) {
             this.grid[i] = [];
@@ -33,13 +46,25 @@ export class TicTacToeComponent {
 
     ticOrTac(row:number, col:number): void {
         if(this.isGameOn && this.grid[row][col].Marked === null) {
+            this.noOfCellsMarkedInGame += 1;
             this.grid[row][col].Marked = this.isPlayer1;
             
             if(this.checkForWinningSequence(row, col, this.isPlayer1)) {
+                this.totalGamesPlayed += 1;
+                this.player1Score += (this.isPlayer1 ? 1 : 0);
+                this.player2Score += (this.isPlayer1 ? 0 : 1);
+                this.winningPlayer = (this.isPlayer1 ? "Player 1" : "Player 2");
                 this.isPlayer1 = null;
                 this.isGameOn = false;
             } else {
-                this.isPlayer1 = !this.isPlayer1;
+                if(this.noOfCellsMarkedInGame === (this.gridSize * this.gridSize)) {
+                    this.totalGamesPlayed += 1;
+                    this.winningPlayer = "Its a DRAW";
+                    this.noWinner = (this.player1Score + this.player2Score);
+                    this.isPlayer1 = null;
+                } else {
+                    this.isPlayer1 = !this.isPlayer1;
+                }
             }
         }
     }
@@ -69,5 +94,10 @@ export class TicTacToeComponent {
         }
         
         return false;
+    }
+
+    restart(): void {
+        this.isPlayer1 = true;
+        this.resetGrid();
     }
 }
