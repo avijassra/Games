@@ -8,6 +8,7 @@ namespace ng2_jokes
         [Route("api/user")]
         public object Post(string firstname, string lastname, int age, string language)
         {
+            //https://codingblast.com/asp-net-core-signalr-simple-chat/
             return new {
                 Id = Guid.NewGuid().ToString(),
                 FirstName = firstname,

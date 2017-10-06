@@ -1,0 +1,36 @@
+<div class="ttt-g">
+    <div class="row text-center top15 wells">
+        <div class="col-md-4" [ngClass]="{ 'text-danger': (isPlayer1 === true) }">
+            <p >Player 1</p>
+            <p>{{player1Score}}</p>
+        </div>
+        <div class="col-md-4">
+            <p>Draw</p>
+            <p>{{noWinner}}</p>
+        </div>
+        <div class="col-md-4" [ngClass]="{ 'text-danger': (isPlayer1 === false) }">
+            <p >Player 2</p>
+            <p>{{player2Score}}</p>
+        </div>
+    </div>
+    <div class="row top15"></div>
+    <div class="row top15">
+        <div class="col-md-12">
+            <div class="game-viewport">
+                <table class="text-center {{winningClass}}">
+                    <tr *ngFor="let row of grid; let r = index" >
+                        <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)"><i class="fa" [ngClass]="{'fa-window-close': grid[r][c].Marked === true, 'fa-circle-o': grid[r][c].Marked === false, 'text-success': grid[r][c].IsWinningSequence }" ></i></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="game-viewport-overlay text-center" [ngClass]="{'hide': (isPlayer1 !== null) }" >
+                <div>
+                    <h1>{{winningPlayer}}</h1>
+                    <button class="btn btn-primary" (click)="restart()">Play</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row top15">
+    </div>
+</div>
