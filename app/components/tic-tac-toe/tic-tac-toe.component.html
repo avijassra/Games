@@ -33,4 +33,15 @@
     </div>
     <div class="row top15">
     </div>
+    <div class="row top15">
+        <div class="col-md=6" >
+            <input type="text" #message class="form-input" />
+        </div>
+        <div>
+            <button class="btn btn-primary" (click)="sendMessage(#message.value)" >Send</button>
+        </div>
+    </div>
+    <div>
+        {{chatHistory}}
+    </div>
 </div>

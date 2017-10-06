@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
-import { ITicTacToeModel, TicTacToeModel } from '../../models/tic-tac-toe.model';
 import * as _ from "lodash";
+
+import { Component, OnInit } from '@angular/core';
+import { ITicTacToeModel, TicTacToeModel } from '../../models/tic-tac-toe.model';
+import { TicTacToeService } from '../../services/tic-tac-toe.service';
+
+
 
 @Component({
     moduleId: module.id,
@@ -15,7 +19,9 @@ import * as _ from "lodash";
                 .ttt-g table tr:last-child td { border-bottom: none;}
                 `]
 })
-export class TicTacToeComponent {
+export class TicTacToeComponent implements OnInit {
+    subscription: any;
+
     gridSize = 4;
     isGameOn = true;
     isPlayer1?: boolean = null;
@@ -30,12 +36,19 @@ export class TicTacToeComponent {
     noOfCellsMarkedInGame = 0;
     winningPlayer: string;
 
-    constructor() {
+    chatHistory:string;
+
+    constructor(private ticTacToeSrvc: TicTacToeService) {
         this.resetGrid();
 
         if(!this.gameHistory || this.gameHistory.length === 0) {
 
         }
+    }
+
+    ngOnInit() {
+        this.subscription = this.ticTacToeSrvc.messageReceivedEmitter()
+            .subscribe((message:string) => this.onMessageReceived(message));
     }
 
     resetGrid(): void {
@@ -111,5 +124,14 @@ export class TicTacToeComponent {
             this.gameHistory.push(this.grid);
         }
         this.resetGrid();
+    }
+
+    sendMessage(message: string): void {
+        this.ticTacToeSrvc.send(message);
+    }
+
+    onMessageReceived(message: string): void {
+        console.log(message);
+        this.chatHistory = `${this.chatHistory} <br /> ${message}`;
     }
 }

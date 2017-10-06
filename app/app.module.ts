@@ -6,8 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 // components
 import { AppComponent } from './app.component';
-import { TicTacToeComponent } from './components/tic-tac-toe/tic-tac-toe.componet';
-import { Puzzle2048Component } from './components/2048/2048.componet';
+import { TicTacToeComponent } from './components/tic-tac-toe/tic-tac-toe.component';
+import { Puzzle2048Component } from './components/2048/2048.component';
+import { TicTacToeService } from './services/tic-tac-toe.service';
 // directive
 // Model
 //Service
@@ -37,7 +38,7 @@ const routes: Routes = [
         Puzzle2048Component
     ],
     providers: [
-        
+        TicTacToeService
     ],
 })
 export class AppModule { }
