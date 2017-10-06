@@ -53,14 +53,14 @@ export class TicTacToeComponent {
                 this.totalGamesPlayed += 1;
                 this.player1Score += (this.isPlayer1 ? 1 : 0);
                 this.player2Score += (this.isPlayer1 ? 0 : 1);
-                this.winningPlayer = (this.isPlayer1 ? "Player 1" : "Player 2");
+                this.winningPlayer = (this.isPlayer1 ? "Player 1" : "Player 2") + ' is a winner';
                 this.isPlayer1 = null;
                 this.isGameOn = false;
             } else {
                 if(this.noOfCellsMarkedInGame === (this.gridSize * this.gridSize)) {
                     this.totalGamesPlayed += 1;
                     this.winningPlayer = "Its a DRAW";
-                    this.noWinner = (this.player1Score + this.player2Score);
+                    this.noWinner = this.totalGamesPlayed - (this.player1Score + this.player2Score);
                     this.isPlayer1 = null;
                 } else {
                     this.isPlayer1 = !this.isPlayer1;

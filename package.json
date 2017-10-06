@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "description": "Web App Games",
   "scripts": {
-      "start": "tsc && concurrently \"tsc -w\" \"dotnet run\" \"--debug\" "
+    "start": "tsc && concurrently \"tsc -w\" \"dotnet run\" \"--debug\" "
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@angular/common":"~4.4.4",
+    "@angular/common": "~4.4.4",
     "@angular/compiler": "~4.4.4",
     "@angular/core": "~4.4.4",
     "@angular/forms": "~4.4.4",
@@ -17,21 +17,20 @@
     "@angular/platform-browser": "~4.4.4",
     "@angular/platform-browser-dynamic": "~4.4.4",
     "@angular/router": "~4.4.4",
-
-    "angular-in-memory-web-api":"~0.4.6",
-    "systemjs":"~0.20.19",
-    "core-js":"~2.5.1",
-    "reflect-metadata":"~0.1.10",
-    "rxjs":"~5.4.3",
-    "zone.js":"~0.8.18",
-
-    "@types/lodash":"~4.14.77",
-    "lodash": "~4.17.4"
+    "@types/lodash": "~4.14.77",
+    "angular-in-memory-web-api": "~0.4.6",
+    "core-js": "~2.5.1",
+    "lodash": "~4.17.4",
+    "reflect-metadata": "~0.1.10",
+    "rxjs": "~5.4.3",
+    "signalr-client": "0.0.17",
+    "systemjs": "~0.20.19",
+    "zone.js": "~0.8.18"
   },
   "devDependencies": {
-    "concurrently":"~3.5.0",
-    "typescript":"~2.5.3",
-    "@types/node":"~8.0.31"
+    "concurrently": "~3.5.0",
+    "typescript": "~2.5.3",
+    "@types/node": "~8.0.31"
   },
-  "repository": { }
+  "repository": {}
 }
