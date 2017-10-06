@@ -29,6 +29,7 @@ namespace Games
         {
             // Add framework services.
             services.AddMvc();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +51,10 @@ namespace Games
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<Games.Hubs.TicTacToeHub>("tictactoe");
+            });
         }
     }
 }
