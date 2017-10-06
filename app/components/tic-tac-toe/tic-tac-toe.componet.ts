@@ -16,19 +16,26 @@ import * as _ from "lodash";
                 `]
 })
 export class TicTacToeComponent {
-    gridSize = 3;
+    gridSize = 4;
     isGameOn = true;
     isPlayer1?: boolean = null;
     totalGamesPlayed = 0;
     noWinner = 0;
     player1Score = 0;
+    player1Sign = 'fa-window-close';
     player2Score = 0;
+    player2Sign = 'fa-circle-o';
     grid: ITicTacToeModel[][];
+    gameHistory: ITicTacToeModel[][][];
     noOfCellsMarkedInGame = 0;
     winningPlayer: string;
 
     constructor() {
         this.resetGrid();
+
+        if(!this.gameHistory || this.gameHistory.length === 0) {
+
+        }
     }
 
     resetGrid(): void {
@@ -53,13 +60,13 @@ export class TicTacToeComponent {
                 this.totalGamesPlayed += 1;
                 this.player1Score += (this.isPlayer1 ? 1 : 0);
                 this.player2Score += (this.isPlayer1 ? 0 : 1);
-                this.winningPlayer = (this.isPlayer1 ? "Player 1" : "Player 2") + ' is a winner';
+                this.winningPlayer = `${this.isPlayer1 ? 'Player 1' : 'Player 2'} is a winner`;
                 this.isPlayer1 = null;
                 this.isGameOn = false;
             } else {
                 if(this.noOfCellsMarkedInGame === (this.gridSize * this.gridSize)) {
                     this.totalGamesPlayed += 1;
-                    this.winningPlayer = "Its a DRAW";
+                    this.winningPlayer = "Its a DRAW !!!";
                     this.noWinner = this.totalGamesPlayed - (this.player1Score + this.player2Score);
                     this.isPlayer1 = null;
                 } else {
@@ -98,6 +105,11 @@ export class TicTacToeComponent {
 
     restart(): void {
         this.isPlayer1 = true;
+        if(this.totalGamesPlayed === 0) {
+            this.gameHistory = [];
+        } else {
+            this.gameHistory.push(this.grid);
+        }
         this.resetGrid();
     }
 }

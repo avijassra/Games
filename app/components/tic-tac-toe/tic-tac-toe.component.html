@@ -18,20 +18,8 @@
         <div class="col-md-12">
             <div class="game-viewport">
                 <table class="text-center {{winningClass}}">
-                    <tr>
-                        <td (click)="ticOrTac(0,0)"><i class="fa" [ngClass]="{'fa-window-close': grid[0][0].Marked === true, 'fa-circle-o': grid[0][0].Marked === false, 'text-success': grid[0][0].IsWinningSequence }" ></i></td>
-                        <td (click)="ticOrTac(0,1)"><i class="fa" [ngClass]="{'fa-window-close': grid[0][1].Marked === true, 'fa-circle-o': grid[0][1].Marked === false, 'text-success': grid[0][1].IsWinningSequence }" ></i></td>
-                        <td (click)="ticOrTac(0,2)"><i class="fa" [ngClass]="{'fa-window-close': grid[0][2].Marked === true, 'fa-circle-o': grid[0][2].Marked === false, 'text-success': grid[0][2].IsWinningSequence }" ></i></td>
-                    </tr>
-                    <tr>
-                        <td (click)="ticOrTac(1,0)"><i class="fa" [ngClass]="{'fa-window-close': grid[1][0].Marked === true, 'fa-circle-o': grid[1][0].Marked === false, 'text-success': grid[1][0].IsWinningSequence }" ></i></td>
-                        <td (click)="ticOrTac(1,1)"><i class="fa" [ngClass]="{'fa-window-close': grid[1][1].Marked === true, 'fa-circle-o': grid[1][1].Marked === false, 'text-success': grid[1][1].IsWinningSequence }" ></i></td>
-                        <td (click)="ticOrTac(1,2)"><i class="fa" [ngClass]="{'fa-window-close': grid[1][2].Marked === true, 'fa-circle-o': grid[1][2].Marked === false, 'text-success': grid[1][2].IsWinningSequence }" ></i></td>
-                    </tr>
-                    <tr>
-                        <td (click)="ticOrTac(2,0)"><i class="fa" [ngClass]="{'fa-window-close': grid[2][0].Marked === true, 'fa-circle-o': grid[2][0].Marked === false, 'text-success': grid[2][0].IsWinningSequence }" ></i></td>
-                        <td (click)="ticOrTac(2,1)"><i class="fa" [ngClass]="{'fa-window-close': grid[2][1].Marked === true, 'fa-circle-o': grid[2][1].Marked === false, 'text-success': grid[2][1].IsWinningSequence }" ></i></td>
-                        <td (click)="ticOrTac(2,2)"><i class="fa" [ngClass]="{'fa-window-close': grid[2][2].Marked === true, 'fa-circle-o': grid[2][2].Marked === false, 'text-success': grid[2][2].IsWinningSequence }" ></i></td>
+                    <tr *ngFor="let row of grid; let r = index" >
+                        <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)"><i class="fa" [ngClass]="{'fa-window-close': grid[r][c].Marked === true, 'fa-circle-o': grid[r][c].Marked === false, 'text-success': grid[r][c].IsWinningSequence }" ></i></td>
                     </tr>
                 </table>
             </div>
@@ -44,6 +32,5 @@
         </div>
     </div>
     <div class="row top15">
-
     </div>
 </div>
