@@ -1,4 +1,14 @@
 <div class="ttt-g">
+    <div class="row top15">
+        <div class="col-md=6" >
+            <input type="text" [(ngModel)]="message" class="form-input" />
+        </div>
+        <div>
+            <button class="btn btn-primary" (click)="sendMessage()" >Send</button>
+        </div>
+    </div>
+    <div class="row top30" [innerHTML]="chatHistory">
+    </div>
     <div class="row text-center top15 wells">
         <div class="col-md-4" [ngClass]="{ 'text-danger': (isPlayer1 === true) }">
             <p >Player 1</p>
@@ -32,16 +42,5 @@
         </div>
     </div>
     <div class="row top15">
-    </div>
-    <div class="row top15">
-        <div class="col-md=6" >
-            <input type="text" #message class="form-input" />
-        </div>
-        <div>
-            <button class="btn btn-primary" (click)="sendMessage(#message.value)" >Send</button>
-        </div>
-    </div>
-    <div>
-        {{chatHistory}}
     </div>
 </div>

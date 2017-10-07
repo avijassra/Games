@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { HubConnection } from '@aspnet/signalr-client';
 
 // components
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
         BrowserModule,
         HttpModule,
         FormsModule,
+        //HubConnection,
         RouterModule.forRoot(routes, { useHash: true})
     ],
     declarations: [ 

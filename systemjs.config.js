@@ -27,7 +27,9 @@
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       // lodash
-      'lodash': 'node_modules/lodash/lodash.js'
+      'lodash': 'node_modules/lodash/lodash.js',
+      // signalr
+      '@aspnet/signalr-client': 'npm:@aspnet/signalr-client/dist/browser/signalr-client-1.0.0-alpha1-final.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

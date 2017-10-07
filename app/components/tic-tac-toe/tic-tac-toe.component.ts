@@ -36,7 +36,8 @@ export class TicTacToeComponent implements OnInit {
     noOfCellsMarkedInGame = 0;
     winningPlayer: string;
 
-    chatHistory:string;
+    chatHistory:string = '';
+    message: string;
 
     constructor(private ticTacToeSrvc: TicTacToeService) {
         this.resetGrid();
@@ -126,8 +127,8 @@ export class TicTacToeComponent implements OnInit {
         this.resetGrid();
     }
 
-    sendMessage(message: string): void {
-        this.ticTacToeSrvc.send(message);
+    sendMessage(): void {
+        this.ticTacToeSrvc.send(this.message);
     }
 
     onMessageReceived(message: string): void {
