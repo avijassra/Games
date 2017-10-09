@@ -9,10 +9,15 @@ import { HubConnection } from '@aspnet/signalr-client';
 import { AppComponent } from './app.component';
 import { TicTacToeComponent } from './components/tic-tac-toe/tic-tac-toe.component';
 import { Puzzle2048Component } from './components/2048/2048.component';
-import { TicTacToeService } from './services/tic-tac-toe.service';
 // directive
 // Model
+import { TicTacToeGameModel, TicTacToePlayerModel } from './models/tic-tac-toe.model';
 //Service
+import { AppService } from './services/common.service';
+import { ITicTacToeService } from './services/tic-tac-toe/i.tic-tac-toe.service';
+import { TicTacToeFactoryService } from './services/tic-tac-toe/tic.-tac-toe.factory.service';
+import { TicTacToeTwoPlayerService } from './services/tic-tac-toe/tic-tac-toe.two-player.service';
+import { TicTacToeRemoteService } from './services/tic-tac-toe/tic-tac-toe.remote.service';
 
 const routes: Routes = [
     { path: '', redirectTo: 'ticTacToe', pathMatch: 'full' },
@@ -40,7 +45,10 @@ const routes: Routes = [
         Puzzle2048Component
     ],
     providers: [
-        TicTacToeService
+        TicTacToeGameModel,
+        TicTacToePlayerModel,
+        AppService,
+        TicTacToeFactoryService
     ],
 })
 export class AppModule { }
