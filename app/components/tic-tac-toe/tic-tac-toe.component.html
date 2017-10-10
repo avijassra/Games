@@ -41,42 +41,39 @@
                            <select class="form-control" [(ngModel)]="selectedGameType" >
                                <option *ngFor="let go of gameOptions" [value]="go.id">{{go.desc}}</option>
                            </select>
-                           {{selectedGameType}}
                        </div>
                    </div>
                    <div class="row">
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="Player-1"  [(ngModel)]="player1name" />
-                            <br />
-                            <i class="fa fa-lg fa-window-close" ></i> <i class="fa fa-lg fa-circle-o" ></i>
+                            <input type="text" class="form-control" placeholder="Player-1"  [(ngModel)]="player1name" (onChange)="player1nameChange()" />
+                            <i class="fa fa-lg fa-window-close" [ngClass]="{ 'fa-window-close': isMarkerX }" ></i>
                         </div>
                         <div class="col-sm-4 text-center">
                             <h4 class="vs">VS</h4>
                         </div>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" [ngClass]="{ 'hide': (selectedGameType != 1) }" placeholder="Player-2" [(ngModel)]="player2name" />
-                            <p [ngClass]="{ 'hide': (selectedGameType != 2) }" >
-                                <input type="text" class="form-control" [ngClass]="{ 'hide': player2name }" placeholder="Game Name" [(ngModel)]="gameName" />
-                                <span [ngClass]="{ 'hide': !player2name }" >{{gameName}}</span>
+                            <div [ngClass]="{ 'hide': (selectedGameType != 2) }" >
+                                <input type="text" class="form-control" [ngClass]="{ 'hide': !player2name }" placeholder="Game Name" [(ngModel)]="gameName" />
+                                <span [ngClass]="{ 'hide': player2name }" >{{gameName}}</span>
                                 <br />
                                 <span [ngClass]="{ 'hide': player2name }" >Waiting player 2 to join</span>
                                 <span [ngClass]="{ 'hide': !player2name }" >{{player2name}}</span>
-                            </p>
-                            <p type="text" class="form-control" [ngClass]="{ 'hide': (selectedGameType != 3) }" >
+                            </div>
+                            <div type="text" class="form-control" [ngClass]="{ 'hide': (selectedGameType != 3) }" >
                                 Computer
-                            </p>
-                            <br />
-                            <i class="fa fa-lg fa-window-close" ></i> <i class="fa fa-lg fa-circle-o" ></i>
+                            </div>
+                            <i class="fa fa-lg fa-window-close" [ngClass]="{ 'fa-window-close': isMarkerX }" ></i>
                         </div>
                    </div>
-                   <div class="row text-center" >
-
+                   <div class="row text-center top30" >
+                        <button class="btn btn-primary" (click)="startTheGame()">Play</button>
                    </div>
                 </div>
-                <div [ngClass]="{ 'hide': (ticTacToeSrvc == null) }" >
+                <!-- <div [ngClass]="{ 'hide': (ticTacToeSrvc == null) }" >
                     <h1>{{winningPlayer}}</h1>
                     <button class="btn btn-primary" (click)="restart()">Play</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

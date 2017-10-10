@@ -5,6 +5,7 @@ import { AppService } from '../services/common.service'
 @Injectable()
 export class TicTacToeGameModel {
     public readonly id: string;
+    public name: string;
     public readonly players: TicTacToePlayerModel[];
 
     constructor(appSrvc: AppService) {
@@ -34,6 +35,7 @@ export class TicTacToeGameModel {
 @Injectable()
 export class TicTacToePlayerModel {
     constructor(public id: string,
+                public name: string,
                 public isActive: boolean,
                 public isMarkerX: boolean) {
         }

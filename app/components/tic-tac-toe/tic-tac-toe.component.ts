@@ -25,8 +25,11 @@ export class TicTacToeComponent implements OnInit {
     ticTacToeSrvc: ITicTacToeService = null;
     gameOptions:object;
     selectedGameType: number;
+    gameName: string;
+    player1name: string;
+    player2name: string;
 
-    constructor(private appService: AppService, 
+    constructor(private appSrvc: AppService, 
         private factorySrvc: TicTacToeFactoryService, 
         private gameModel: TicTacToeGameModel) {
         this.gameOptions = [
@@ -41,6 +44,13 @@ export class TicTacToeComponent implements OnInit {
     }
 
     startTheGame(): void {
+        debugger;
         this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
+        
+        this.player1name = this.player1name || 'Player1';
+        this.player2name = this.player2name || 'Player2';
+        this.gameName = this.gameName || `${this.player1name}_${this.appSrvc.dateUid()}`
+        
+        this.ticTacToeSrvc.startNewGame(this.gameName, this.player1name, this.player2name);
     }
 }

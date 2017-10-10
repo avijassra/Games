@@ -33,7 +33,7 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     //         .then(() => this.connection.invoke('send', message));
     // }
     
-    startNewGame(): string {
+    startNewGame(gameName: string, player1name: string, player2name: string): string {
         throw new Error("Method not implemented.");
     }
     onSend(): string {
