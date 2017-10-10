@@ -33,8 +33,47 @@
                     </tr>
                 </table>
             </div>
-            <div class="game-viewport-overlay text-center" [ngClass]="{'hide': (isPlayer1 !== null) }" >
-                <div>
+            <div class="game-viewport-overlay text-center" [ngClass]="{'hide': (ticTacToeSrvc != null) }" >
+                <div [ngClass]="{ 'hide': (ticTacToeSrvc != null) }">
+                   <div class="row">
+                       <div class="col-sm-4" ></div>
+                        <div class="col-sm-4" >
+                           <select class="form-control" [(ngModel)]="selectedGameType" >
+                               <option *ngFor="let go of gameOptions" [value]="go.id">{{go.desc}}</option>
+                           </select>
+                           {{selectedGameType}}
+                       </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="Player-1"  [(ngModel)]="player1name" />
+                            <br />
+                            <i class="fa fa-lg fa-window-close" ></i> <i class="fa fa-lg fa-circle-o" ></i>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <h4 class="vs">VS</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" [ngClass]="{ 'hide': (selectedGameType != 1) }" placeholder="Player-2" [(ngModel)]="player2name" />
+                            <p [ngClass]="{ 'hide': (selectedGameType != 2) }" >
+                                <input type="text" class="form-control" [ngClass]="{ 'hide': player2name }" placeholder="Game Name" [(ngModel)]="gameName" />
+                                <span [ngClass]="{ 'hide': !player2name }" >{{gameName}}</span>
+                                <br />
+                                <span [ngClass]="{ 'hide': player2name }" >Waiting player 2 to join</span>
+                                <span [ngClass]="{ 'hide': !player2name }" >{{player2name}}</span>
+                            </p>
+                            <p type="text" class="form-control" [ngClass]="{ 'hide': (selectedGameType != 3) }" >
+                                Computer
+                            </p>
+                            <br />
+                            <i class="fa fa-lg fa-window-close" ></i> <i class="fa fa-lg fa-circle-o" ></i>
+                        </div>
+                   </div>
+                   <div class="row text-center" >
+
+                   </div>
+                </div>
+                <div [ngClass]="{ 'hide': (ticTacToeSrvc == null) }" >
                     <h1>{{winningPlayer}}</h1>
                     <button class="btn btn-primary" (click)="restart()">Play</button>
                 </div>

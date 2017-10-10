@@ -3,11 +3,13 @@ import * as _ from "lodash";
 import { Component, OnInit } from '@angular/core';
 import { TicTacToeGameModel, TicTacToePlayerModel } from '../../models/tic-tac-toe.model';
 import { AppService } from '../../services/common.service';
+import { GameType } from '../../models/enums'
+import { ITicTacToeService } from '../../services/tic-tac-toe/i.tic-tac-toe.service';
 import { TicTacToeFactoryService } from '../../services/tic-tac-toe/tic.-tac-toe.factory.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'parent-di',
+    selector: 'tic-tac-toe',
     templateUrl: 'tic-tac-toe.component.html',
     styles: [`  .ttt-g table tr td { font-size: 70px }
                 .ttt-g table { margin: 0px auto; float: none; }
@@ -20,14 +22,25 @@ import { TicTacToeFactoryService } from '../../services/tic-tac-toe/tic.-tac-toe
 })
 export class TicTacToeComponent implements OnInit {
     gridSize = 3;
+    ticTacToeSrvc: ITicTacToeService = null;
+    gameOptions:object;
+    selectedGameType: number;
 
     constructor(private appService: AppService, 
         private factorySrvc: TicTacToeFactoryService, 
         private gameModel: TicTacToeGameModel) {
-        
+        this.gameOptions = [
+            {id: 1, desc: 'Two Player'},
+            {id: 2, desc: 'Remote'},
+            //{id: 3, desc: 'Computer'},
+        ];
     }
 
     ngOnInit(): void {
         //throw new Error("Method not implemented.");
+    }
+
+    startTheGame(): void {
+        this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
     }
 }
