@@ -46,7 +46,7 @@
                    <div class="row">
                         <div class="col-sm-4">
                             <input type="text" class="form-control" placeholder="Player-1"  [(ngModel)]="player1name" (onChange)="player1nameChange()" />
-                            <i class="fa fa-lg fa-window-close" [ngClass]="{ 'fa-window-close': isMarkerX }" ></i>
+                            <i class="fa fa-lg fa-window-close" [ngClass]="{ 'fa-window-close': isMarkerX, 'fa-circle-o': !isMarkerX }" (click)="changeTheMarker();" ></i>
                         </div>
                         <div class="col-sm-4 text-center">
                             <h4 class="vs">VS</h4>
@@ -63,7 +63,7 @@
                             <div type="text" class="form-control" [ngClass]="{ 'hide': (selectedGameType != 3) }" >
                                 Computer
                             </div>
-                            <i class="fa fa-lg fa-window-close" [ngClass]="{ 'fa-window-close': isMarkerX }" ></i>
+                            <i class="fa fa-lg" [ngClass]="{ 'fa-window-close': !isMarkerX, 'fa-circle-o': isMarkerX }" ></i>
                         </div>
                    </div>
                    <div class="row text-center top30" >

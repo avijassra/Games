@@ -25,6 +25,7 @@ export class TicTacToeComponent implements OnInit {
     ticTacToeSrvc: ITicTacToeService = null;
     gameOptions:object;
     selectedGameType: number;
+    isMarkerX = true;
     gameName: string;
     player1name: string;
     player2name: string;
@@ -41,6 +42,10 @@ export class TicTacToeComponent implements OnInit {
 
     ngOnInit(): void {
         //throw new Error("Method not implemented.");
+    }
+
+    changeTheMarker(): void {
+        this.isMarkerX = !this.isMarkerX;
     }
 
     startTheGame(): void {
