@@ -34,10 +34,12 @@ export class TicTacToeComponent implements OnInit {
         private factorySrvc: TicTacToeFactoryService, 
         private gameModel: TicTacToeGameModel) {
         this.gameOptions = [
+            {id: 0, desc: '-- Select --'},
             {id: 1, desc: 'Two Player'},
             {id: 2, desc: 'Remote'},
             //{id: 3, desc: 'Computer'},
         ];
+        this.selectedGameType = 0;
     }
 
     ngOnInit(): void {

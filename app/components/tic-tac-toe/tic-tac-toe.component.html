@@ -1,9 +1,36 @@
 <div class="ttt-g">
     <div class="container" >
-        <div class="row top15"></div>
+        <div [ngClass]="{ 'hide': (ticTacToeSrvc != null)}">
+            <div class="row top15"></div>
+            <div class="row text-center">
+                <div class="col-sm-4" ></div>
+                <div class="col-sm-4" >
+                    <select class="form-control" [(ngModel)]="selectedGameType" >
+                        <option *ngFor="let go of gameOptions" [ngValue]="go.id" >{{go.desc}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row top15"></div>
+            <div class="row" [ngClass]="{'hide': (selectedGameType == 0)}">
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <input class="form-control" [(ngModel)]="player1name" placeholder="Player 1" >
+                        <span class="input-group-addon">
+                            <i class="fa fa-lg fa-window-close" [ngClass]="{ 'fa-window-close': isMarkerX, 'fa-circle-o': !isMarkerX }" (click)="changeTheMarker();" ></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <h4 class="vs">VS</h4>
+                </div>
+                <div class="col-sm-5">
+                        
+                </div>
+            </div>
+        </div>
     </div>
     
-    <nav class="navbar fixed-bottom navbar-light bg-light">
+    <nav id="footer" class="navbar fixed-bottom navbar-light bg-light">
         <span class="pull-left">
             Player 1: {{player1Score}}
         </span>    
