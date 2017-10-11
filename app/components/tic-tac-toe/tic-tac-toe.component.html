@@ -1,82 +1,17 @@
 <div class="ttt-g">
-    <!-- <div class="row top15">
-        <div class="col-md=6" >
-            <input type="text" [(ngModel)]="message" class="form-input" />
-        </div>
-        <div>
-            <button class="btn btn-primary" (click)="sendMessage()" >Send</button>
-        </div>
+    <div class="container" >
+        <div class="row top15"></div>
     </div>
-    <div class="row top30" [innerHTML]="chatHistory">
-    </div> -->
-    <div class="row text-center top15 wells">
-        <div class="col-md-4" [ngClass]="{ 'text-danger': (isPlayer1 === true) }">
-            <p >Player 1</p>
-            <p>{{player1Score}}</p>
-        </div>
-        <div class="col-md-4">
-            <p>Draw</p>
-            <p>{{noWinner}}</p>
-        </div>
-        <div class="col-md-4" [ngClass]="{ 'text-danger': (isPlayer1 === false) }">
-            <p >Player 2</p>
-            <p>{{player2Score}}</p>
-        </div>
-    </div>
-    <div class="row top15"></div>
-    <div class="row top15">
-        <div class="col-md-12">
-            <div class="game-viewport">
-                <table class="text-center {{winningClass}}">
-                    <tr *ngFor="let row of grid; let r = index" >
-                        <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)"><i class="fa" [ngClass]="{'fa-window-close': grid[r][c].Marked === true, 'fa-circle-o': grid[r][c].Marked === false, 'text-success': grid[r][c].IsWinningSequence }" ></i></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="game-viewport-overlay text-center" [ngClass]="{'hide': (ticTacToeSrvc != null) }" >
-                <div [ngClass]="{ 'hide': (ticTacToeSrvc != null) }">
-                   <div class="row">
-                       <div class="col-sm-4" ></div>
-                        <div class="col-sm-4" >
-                           <select class="form-control" [(ngModel)]="selectedGameType" >
-                               <option *ngFor="let go of gameOptions" [value]="go.id">{{go.desc}}</option>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="row">
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="Player-1"  [(ngModel)]="player1name" (onChange)="player1nameChange()" />
-                            <i class="fa fa-lg fa-window-close" [ngClass]="{ 'fa-window-close': isMarkerX, 'fa-circle-o': !isMarkerX }" (click)="changeTheMarker();" ></i>
-                        </div>
-                        <div class="col-sm-4 text-center">
-                            <h4 class="vs">VS</h4>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" [ngClass]="{ 'hide': (selectedGameType != 1) }" placeholder="Player-2" [(ngModel)]="player2name" />
-                            <div [ngClass]="{ 'hide': (selectedGameType != 2) }" >
-                                <input type="text" class="form-control" [ngClass]="{ 'hide': !player2name }" placeholder="Game Name" [(ngModel)]="gameName" />
-                                <span [ngClass]="{ 'hide': player2name }" >{{gameName}}</span>
-                                <br />
-                                <span [ngClass]="{ 'hide': player2name }" >Waiting player 2 to join</span>
-                                <span [ngClass]="{ 'hide': !player2name }" >{{player2name}}</span>
-                            </div>
-                            <div type="text" class="form-control" [ngClass]="{ 'hide': (selectedGameType != 3) }" >
-                                Computer
-                            </div>
-                            <i class="fa fa-lg" [ngClass]="{ 'fa-window-close': !isMarkerX, 'fa-circle-o': isMarkerX }" ></i>
-                        </div>
-                   </div>
-                   <div class="row text-center top30" >
-                        <button class="btn btn-primary" (click)="startTheGame()">Play</button>
-                   </div>
-                </div>
-                <!-- <div [ngClass]="{ 'hide': (ticTacToeSrvc == null) }" >
-                    <h1>{{winningPlayer}}</h1>
-                    <button class="btn btn-primary" (click)="restart()">Play</button>
-                </div> -->
-            </div>
-        </div>
-    </div>
-    <div class="row top15">
-    </div>
+    
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+        <span class="pull-left">
+            Player 1: {{player1Score}}
+        </span>    
+        <span class="">
+            Draw: {{noWinner}}
+        </span>
+        <span class="pull-right" [ngClass]="{ 'text-danger': (isPlayer1 === false) }">
+            Player 2: {{player2Score}}
+        </span>
+    </nav>
 </div>
