@@ -40,3 +40,13 @@ export class TicTacToePlayerModel {
                 public isMarkerX: boolean) {
         }
 }
+
+export class TicTacToeModel {
+    public Marked?: boolean;
+    public IsWinningSequence: boolean;
+
+    constructor() {
+        this.Marked = null;
+        this.IsWinningSequence = false;
+    }
+}
