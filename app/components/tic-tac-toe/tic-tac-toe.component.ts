@@ -33,6 +33,7 @@ export class TicTacToeComponent implements OnInit {
     grid: TicTacToeModel[][];
     gameHistory: TicTacToeModel[][][];
     totalGamesPlayed: number;
+    isGameOn: boolean;
 
     constructor(private appSrvc: AppService, 
         private factorySrvc: TicTacToeFactoryService, 
@@ -65,7 +66,6 @@ export class TicTacToeComponent implements OnInit {
     }
 
     resetGrid(): void {
-        debugger;
         //this.winningPlayer = null;
         this.noOfCellsMarkedInGame = 0;
         this.grid = [];
@@ -78,8 +78,7 @@ export class TicTacToeComponent implements OnInit {
     }
 
     ticOrTac(row:number, col:number): void {
-        debugger;
-        if(this.gameModel.isGameOn && this.grid[row][col].marker === null) {
+        if(this.isGameOn && this.grid[row][col].marker === null) {
             this.noOfCellsMarkedInGame += 1;
             this.grid[row][col].marker = this.gameModel.activePlayer.isMarkerX;
             
@@ -89,7 +88,7 @@ export class TicTacToeComponent implements OnInit {
                 // this.player2Score += (this.isPlayer1 ? 0 : 1);
                 // this.winningPlayer = `${this.isPlayer1 ? 'Player 1' : 'Player 2'} is a winner`;
                 // this.isPlayer1 = null;
-                this.gameModel.isGameOn = false;
+                this.isGameOn = false;
             } else {
                 if(this.noOfCellsMarkedInGame === (this.gridSize * this.gridSize)) {
                     this.totalGamesPlayed += 1;

@@ -6,12 +6,10 @@ import { AppService } from '../services/common.service'
 export class TicTacToeGameModel {
     public readonly id: string;
     public name: string;
-    public isGameOn: boolean;
     public players = new TicTacToePlayersModel();
 
     constructor(private appSrvc: AppService) {
         this.id = appSrvc.newGuid();
-        this.isGameOn= false;
     }
 
     get activePlayer(): TicTacToePlayerModel {

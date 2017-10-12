@@ -6,9 +6,17 @@ import { TicTacToeGameModel, TicTacToePlayerModel } from '../../models/tic-tac-t
 
 @Injectable()
 export class TicTacToeTwoPlayerService extends TicTacToeBaseService implements ITicTacToeService {
+    messageReceived: EventEmitter<string>;
+    changeActivePlayer: EventEmitter<null>;
+    swapMarkers: EventEmitter<null>;
+
     constructor(appSrvc: AppService, gameModel: TicTacToeGameModel) {
-            super(appSrvc, gameModel);
-        }
+        super(appSrvc, gameModel);
+    }
+
+    startNewGame(gameName: string, player1name: string, isMarkerX: boolean, player2name: string): string {
+        throw new Error("Method not implemented.");
+    }
 
     onSend(): string {
         throw new Error("Method not implemented.");

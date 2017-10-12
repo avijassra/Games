@@ -6,6 +6,13 @@ import { TicTacToeBaseService } from '../tic-tac-toe/tic-tac-toe.base.service';
 
 @Injectable()
 export class TicTacToeRemoteService extends TicTacToeBaseService implements ITicTacToeService {
+    messageReceived: EventEmitter<string>;
+    changeActivePlayer: EventEmitter<null>;
+    swapMarkers: EventEmitter<null>;
+
+    startNewGame(gameName: string, player1name: string, isMarkerX: boolean, player2name: string): string {
+        return super.startNewGame(gameName, player1name, isMarkerX, player2name);
+    }
     // messageReceived: EventEmitter<string> = new EventEmitter();
 
     // connection: HubConnection;
