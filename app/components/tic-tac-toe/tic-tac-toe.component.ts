@@ -54,8 +54,8 @@ export class TicTacToeComponent implements OnInit {
         debugger;
         this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
         
-        this.player1name = this.player1name || 'Player1';
-        this.player2name = this.player2name || 'Player2';
+        this.player1name = this.player1name || 'Player 1';
+        this.player2name = this.player2name || 'Player 2';
         this.gameName = this.gameName || `${this.player1name}_${this.appSrvc.dateUid()}`
         
         this.ticTacToeSrvc.startNewGame(this.gameName, this.player1name, this.player2name);

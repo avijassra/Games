@@ -34,16 +34,20 @@
                     </div>
                 </div>
                 <div class="row top15"></div>
-                <div class="row text-center">
-                    <button class="btn btn-default" (click)="startTheGame()">
-                        <span>Play</span>
-                        <i class="fa fa-lg fa-play text-primary" ></i>
-                    </button>
+                <div class="row">
+                    <div class="col-sm-12 text-center" >
+                        <button class="btn btn-default" (click)="startTheGame()">
+                            <span>Play</span>
+                            <i class="fa fa-lg fa-play text-primary" ></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
+    <div [ngClass]="{ 'hide': (ticTacToeSrvc == null)}">
+        hello world
+    </div>
     <nav id="footer" class="navbar fixed-bottom navbar-light bg-light">
         <span class="pull-left">
             Player 1: {{player1Score}}
