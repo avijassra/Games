@@ -14,6 +14,14 @@ export class TicTacToeGameModel {
         this.isGameOn= false;
     }
 
+    get activePlayer(): TicTacToePlayerModel {
+        if(this.players.home.isActive) {
+            return this.players.home;
+        } else {
+            return this.players.guest;
+        }
+    }
+
     addHomePlayer(name: string, isMarkerX: boolean): void {
         this.players.home = new TicTacToePlayerModel(this.appSrvc.newGuid(), name, true, isMarkerX);
     }
@@ -55,11 +63,11 @@ export class TicTacToePlayerModel {
 }
 
 export class TicTacToeModel {
-    public Marked?: boolean;
-    public IsWinningSequence: boolean;
+    public marker?: boolean;
+    public isWinningSequence: boolean;
 
     constructor() {
-        this.Marked = null;
-        this.IsWinningSequence = false;
+        this.marker = null;
+        this.isWinningSequence = false;
     }
 }

@@ -32,6 +32,7 @@ export class TicTacToeComponent implements OnInit {
     noOfCellsMarkedInGame: number;
     grid: TicTacToeModel[][];
     gameHistory: TicTacToeModel[][][];
+    totalGamesPlayed: number;
 
     constructor(private appSrvc: AppService, 
         private factorySrvc: TicTacToeFactoryService, 
@@ -77,50 +78,51 @@ export class TicTacToeComponent implements OnInit {
     }
 
     ticOrTac(row:number, col:number): void {
-        // if(this.isGameOn && this.grid[row][col].Marked === null) {
-        //     this.noOfCellsMarkedInGame += 1;
-        //     this.grid[row][col].Marked = this.isPlayer1;
+        debugger;
+        if(this.gameModel.isGameOn && this.grid[row][col].marker === null) {
+            this.noOfCellsMarkedInGame += 1;
+            this.grid[row][col].marker = this.gameModel.activePlayer.isMarkerX;
             
-        //     if(this.checkForWinningSequence(row, col, this.isPlayer1)) {
-        //         this.totalGamesPlayed += 1;
-        //         this.player1Score += (this.isPlayer1 ? 1 : 0);
-        //         this.player2Score += (this.isPlayer1 ? 0 : 1);
-        //         this.winningPlayer = `${this.isPlayer1 ? 'Player 1' : 'Player 2'} is a winner`;
-        //         this.isPlayer1 = null;
-        //         this.isGameOn = false;
-        //     } else {
-        //         if(this.noOfCellsMarkedInGame === (this.gridSize * this.gridSize)) {
-        //             this.totalGamesPlayed += 1;
-        //             this.winningPlayer = "Its a DRAW !!!";
-        //             this.noWinner = this.totalGamesPlayed - (this.player1Score + this.player2Score);
-        //             this.isPlayer1 = null;
-        //         } else {
-        //             this.isPlayer1 = !this.isPlayer1;
-        //         }
-        //     }
-        // }
+            if(this.checkForWinningSequence(row, col, this.gameModel.activePlayer.isMarkerX)) {
+                this.totalGamesPlayed += 1;
+                // this.player1Score += (this.isPlayer1 ? 1 : 0);
+                // this.player2Score += (this.isPlayer1 ? 0 : 1);
+                // this.winningPlayer = `${this.isPlayer1 ? 'Player 1' : 'Player 2'} is a winner`;
+                // this.isPlayer1 = null;
+                this.gameModel.isGameOn = false;
+            } else {
+                if(this.noOfCellsMarkedInGame === (this.gridSize * this.gridSize)) {
+                    this.totalGamesPlayed += 1;
+                    // this.winningPlayer = "Its a DRAW !!!";
+                    // this.noWinner = this.totalGamesPlayed - (this.player1Score + this.player2Score);
+                    // this.isPlayer1 = null;
+                } else {
+                    //this.isPlayer1 = !this.isPlayer1;
+                }
+            }
+        }
     }
 
     checkForWinningSequence(row:number, col:number, markedVal: boolean): boolean {
         // checking the row for winning sequence
-        if(!_.some(this.grid, (rowItem) => rowItem[col].Marked !== markedVal )) {
-            _.forEach(this.grid, (rowItem) => rowItem[col].IsWinningSequence = true );
+        if(!_.some(this.grid, (rowItem) => rowItem[col].marker !== markedVal )) {
+            _.forEach(this.grid, (rowItem) => rowItem[col].isWinningSequence = true );
             return true;
         }
         
         // checking the column for winning sequence
-        if(!_.some(this.grid[row], (cellItem) => cellItem.Marked !== markedVal )) {
-            _.forEach(this.grid[row], (cellItem) => cellItem.IsWinningSequence = true );
+        if(!_.some(this.grid[row], (cellItem) => cellItem.marker !== markedVal )) {
+            _.forEach(this.grid[row], (cellItem) => cellItem.isWinningSequence = true );
             return true;
         }
 
         // checking the diagonal winning sequence
         if((row === col || (row === ((this.gridSize - 1) - col))) || (col === ((this.gridSize - 1) - row))) {
-            if(row === col && (!_.some(this.grid, (rowItem, index) => rowItem[index].Marked !== markedVal))) {
-                _.forEach(this.grid, (rowItem, index) => rowItem[index].IsWinningSequence = true );
+            if(row === col && (!_.some(this.grid, (rowItem, index) => rowItem[index].marker !== markedVal))) {
+                _.forEach(this.grid, (rowItem, index) => rowItem[index].isWinningSequence = true );
                 return true;
-            } else if(!_.some(this.grid, (rowItem, index) => rowItem[(this.gridSize - 1) - index].Marked !== markedVal)) {
-                _.forEach(this.grid, (rowItem, index) => rowItem[(this.gridSize - 1) - index].IsWinningSequence = true );
+            } else if(!_.some(this.grid, (rowItem, index) => rowItem[(this.gridSize - 1) - index].marker !== markedVal)) {
+                _.forEach(this.grid, (rowItem, index) => rowItem[(this.gridSize - 1) - index].isWinningSequence = true );
                 return true;
             }
         }

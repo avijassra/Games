@@ -58,7 +58,9 @@
         <div class="game-viewport">
             <table class="text-center {{winningClass}}">
                 <tr *ngFor="let row of grid; let r = index" >
-                    <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)"><i class="fa" [ngClass]="{'fa-window-close': grid[r][c].Marked === true, 'fa-circle-o': grid[r][c].Marked === false, 'text-success': grid[r][c].IsWinningSequence }" ></i></td>
+                    <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)">
+                        <i class="fa" [ngClass]="{'fa-times': grid[r][c].marker === true, 'fa-circle': grid[r][c].marker === false, 'text-success blink': grid[r][c].isWinningSequence }" ></i>
+                    </td>
                 </tr>
             </table>
         </div>
