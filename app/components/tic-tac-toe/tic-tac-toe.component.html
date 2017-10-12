@@ -46,17 +46,17 @@
         </div>
     </div>
     <div [ngClass]="{ 'hide': (ticTacToeSrvc == null)}">
-        hello world
+        
     </div>
-    <nav id="footer" class="navbar fixed-bottom navbar-light bg-light">
+    <nav id="footer" class="navbar fixed-bottom navbar-light bg-light" [ngClass]="{ 'hide': (ticTacToeSrvc == null)}">
         <span class="pull-left">
-            Player 1: {{player1Score}}
+            {{player1name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': isMarkerX, 'fa-circle': !isMarkerX }" ></i> <b>-</b> {{player1Score}}
         </span>    
         <span class="">
-            Draw: {{noWinner}}
+            Draw <b>-</b> {{noWinner}}
         </span>
         <span class="pull-right" [ngClass]="{ 'text-danger': (isPlayer1 === false) }">
-            Player 2: {{player2Score}}
+            {{player2name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !isMarkerX, 'fa-circle': isMarkerX }" ></i> <b>-</b> {{player2Score}}
         </span>
     </nav>
 </div>
