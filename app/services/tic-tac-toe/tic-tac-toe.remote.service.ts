@@ -1,10 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HubConnection } from '@aspnet/signalr-client';
 import { ITicTacToeService } from '../tic-tac-toe/i.tic-tac-toe.service';
+import { TicTacToeBaseService } from '../tic-tac-toe/tic-tac-toe.base.service';
 
 
 @Injectable()
-export class TicTacToeRemoteService implements ITicTacToeService {
+export class TicTacToeRemoteService extends TicTacToeBaseService implements ITicTacToeService {
     // messageReceived: EventEmitter<string> = new EventEmitter();
 
     // connection: HubConnection;
@@ -33,9 +34,6 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     //         .then(() => this.connection.invoke('send', message));
     // }
     
-    startNewGame(gameName: string, player1name: string, player2name: string): string {
-        throw new Error("Method not implemented.");
-    }
     onSend(): string {
         throw new Error("Method not implemented.");
     }

@@ -12,10 +12,10 @@ export class TicTacToeBaseService {
 
         }
     
-    startNewGame(gameName: string, player1name: string, player2name: string): string {
+    startNewGame(gameName: string, player1name: string, isMarkerX: boolean, player2name: string): string {
         this.gameModel.name = gameName;
-        this.gameModel.addPlayers(new TicTacToePlayerModel(this.appSrvc.newGuid(), player1name, true, true));
-        this.gameModel.addPlayers(new TicTacToePlayerModel(this.appSrvc.newGuid(), player2name, false, false));
+        this.gameModel.addHomePlayer(player1name, isMarkerX);
+        this.gameModel.addGuestPlayer(player2name);
         return this.gameModel.id;
     }
 }

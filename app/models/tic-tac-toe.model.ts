@@ -6,33 +6,46 @@ import { AppService } from '../services/common.service'
 export class TicTacToeGameModel {
     public readonly id: string;
     public name: string;
-    public readonly players: TicTacToePlayerModel[];
+    public isGameOn: boolean;
+    public players = new TicTacToePlayersModel();
 
-    constructor(appSrvc: AppService) {
+    constructor(private appSrvc: AppService) {
         this.id = appSrvc.newGuid();
-        this.players = [];
+        this.isGameOn= false;
     }
 
-    addPlayers(playerModel: TicTacToePlayerModel): void {
-        if(this.players.length < 2) {
-            if(this.players.length === 1) {
-                if(!(playerModel.isMarkerX !== this.players[0].isMarkerX 
-                    && playerModel.isActive !== this.players[0].isActive)) {
-                        throw new Error("Two player cannot have same marker or same on screen "); 
-                    }
-            }
-            this.players.push(playerModel);
+    addHomePlayer(name: string, isMarkerX: boolean): void {
+        this.players.home = new TicTacToePlayerModel(this.appSrvc.newGuid(), name, true, isMarkerX);
+    }
+
+    addGuestPlayer(name: string): void {
+        if(this.players.home != null) {
+            this.players.guest = new TicTacToePlayerModel(this.appSrvc.newGuid(), name, !this.players.home.isActive, !this.players.home.isMarkerX);
         }
     }
 
     changeActivePlayer():void {
-        _.forEach(this.players, function(player){
-            player.isActive = !player.isActive;
-        });
+        // _.forEach(this.players, function(player){
+        //     player.isActive = !player.isActive;
+        // });
+        this.players.home.isActive = !this.players.home.isActive;
+        this.players.guest.isActive = !this.players.guest.isActive;
+    }
+
+    changePlayerMarker():void {
+        // _.forEach(this.players, function(player){
+        //     player.isMarkerX = !player.isMarkerX;
+        // });
+        this.players.home.isMarkerX = !this.players.home.isMarkerX;
+        this.players.guest.isMarkerX = !this.players.guest.isMarkerX;
     }
 }
 
-@Injectable()
+export class TicTacToePlayersModel {
+    public home: TicTacToePlayerModel;
+    public guest: TicTacToePlayerModel
+}
+
 export class TicTacToePlayerModel {
     constructor(public id: string,
                 public name: string,

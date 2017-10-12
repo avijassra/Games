@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 
 import { Component, OnInit } from '@angular/core';
-import { TicTacToeGameModel, TicTacToePlayerModel,TicTacToeModel } from '../../models/tic-tac-toe.model';
+import { TicTacToeGameModel, TicTacToeModel } from '../../models/tic-tac-toe.model';
 import { AppService } from '../../services/common.service';
 import { GameType } from '../../models/enums'
 import { ITicTacToeService } from '../../services/tic-tac-toe/i.tic-tac-toe.service';
@@ -59,7 +59,7 @@ export class TicTacToeComponent implements OnInit {
         this.player1name = this.player1name || 'Player 1';
         this.player2name = this.player2name || 'Player 2';
         this.gameName = this.gameName || `${this.player1name}_${this.appSrvc.dateUid()}`
-        this.ticTacToeSrvc.startNewGame(this.gameName, this.player1name, this.player2name);
+        this.ticTacToeSrvc.startNewGame(this.gameName, this.player1name, this.isMarkerX, this.player2name);
         this.resetGrid();
     }
 
