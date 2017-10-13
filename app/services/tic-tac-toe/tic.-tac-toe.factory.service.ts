@@ -8,14 +8,13 @@ import { TicTacToeRemoteService } from '../tic-tac-toe/tic-tac-toe.remote.servic
 
 @Injectable()
 export class TicTacToeFactoryService {
-    constructor(private appSrvc: AppService, 
-        private gameModel: TicTacToeGameModel) {}
+    constructor(private appSrvc: AppService) {}
 
     resolve(type: GameType): ITicTacToeService {
         if(GameType.TwoPlayer === type){
-            return (new TicTacToeTwoPlayerService(this.appSrvc, this.gameModel))
+            return (new TicTacToeTwoPlayerService(this.appSrvc))
         } else if(GameType.Remote === type) {
-            return (new TicTacToeRemoteService(this.appSrvc, this.gameModel));
+            return (new TicTacToeRemoteService(this.appSrvc));
         } else if(GameType.Computer == type) {
             return null;
         }

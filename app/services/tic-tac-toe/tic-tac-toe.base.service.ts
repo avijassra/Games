@@ -13,10 +13,7 @@ export class TicTacToeBaseService {
 
         }
     
-    startNewGame(gameName: string, player1name: string, isMarkerX: boolean, player2name: string): string {
-        this.gameModel.name = gameName;
-        this.gameModel.addHomePlayer(player1name, isMarkerX);
-        this.gameModel.addGuestPlayer(player2name);
+    startNewGame(gameModel: TicTacToeGameModel, playerModel: TicTacToePlayerModel): string {
         this.changeActivePlayer.emit();
         this.swapMarkers.emit();
         return this.gameModel.id;

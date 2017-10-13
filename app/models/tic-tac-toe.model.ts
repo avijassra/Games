@@ -2,62 +2,48 @@ import { Injectable } from '@angular/core'
 import * as _ from 'lodash'
 import { AppService } from '../services/common.service'
 
-@Injectable()
 export class TicTacToeGameModel {
-    public readonly id: string;
+    public id: string;
     public name: string;
-    public players = new TicTacToePlayersModel();
+    
+    public grid: TicTacToeModel[][];
+    public gameHistory: TicTacToeModel[][][];
+    public totalGamesPlayed: number;
+    public isGameOn: boolean;
+    public noOfCellsMarkedInGame: number;
 
-    constructor(private appSrvc: AppService) {
-        this.id = appSrvc.newGuid();
+    constructor(gId?: string, gName?: string) {
+        this.id = (gId != null ? gId : (new AppService()).newGuid());
+        this.name = (gName != null? gName : this.id);
     }
-
-    get activePlayer(): TicTacToePlayerModel {
-        if(this.players.home.isActive) {
-            return this.players.home;
-        } else {
-            return this.players.guest;
-        }
-    }
-
-    addHomePlayer(name: string, isMarkerX: boolean): void {
-        this.players.home = new TicTacToePlayerModel(this.appSrvc.newGuid(), name, true, isMarkerX);
-    }
-
-    addGuestPlayer(name: string): void {
-        if(this.players.home != null) {
-            this.players.guest = new TicTacToePlayerModel(this.appSrvc.newGuid(), name, !this.players.home.isActive, !this.players.home.isMarkerX);
-        }
-    }
-
-    changeActivePlayer():void {
-        // _.forEach(this.players, function(player){
-        //     player.isActive = !player.isActive;
-        // });
-        this.players.home.isActive = !this.players.home.isActive;
-        this.players.guest.isActive = !this.players.guest.isActive;
-    }
-
-    changePlayerMarker():void {
-        // _.forEach(this.players, function(player){
-        //     player.isMarkerX = !player.isMarkerX;
-        // });
-        this.players.home.isMarkerX = !this.players.home.isMarkerX;
-        this.players.guest.isMarkerX = !this.players.guest.isMarkerX;
-    }
-}
-
-export class TicTacToePlayersModel {
-    public home: TicTacToePlayerModel;
-    public guest: TicTacToePlayerModel
 }
 
 export class TicTacToePlayerModel {
-    constructor(public id: string,
-                public name: string,
-                public isActive: boolean,
-                public isMarkerX: boolean) {
+    public player1Id: string;
+    public player1Name: string;
+    public isPlayer1Active: boolean;
+    public isPlayer1MarkerX: boolean;
+    public player1Score = 0;
+
+    public player2Id: string;
+    public player2Name: string;
+    public player2Score = 0;
+
+    constructor(p1Name?: string, p2Name?: string, p1Id?: string, p2Id?: string) {
+        var appSrvc: AppService;
+        if(p1Id == null || p2Id == null) {
+            appSrvc = new AppService();
         }
+
+        this.player1Id = (p1Id != null ? p1Id : appSrvc.newGuid());
+        this.player1Name = (p1Name != null ? p1Name : 'Player 1');
+        this.player2Id = (p2Id != null ? p2Id : appSrvc.newGuid());
+        this.player2Name = (p2Name != null ? p2Name : 'Player 2');
+    }
+
+    get isActivePlayerMarkerX(): boolean {
+        return (this.isPlayer1Active ? this.isPlayer1MarkerX : !this.isPlayer1Active);
+    }
 }
 
 export class TicTacToeModel {
