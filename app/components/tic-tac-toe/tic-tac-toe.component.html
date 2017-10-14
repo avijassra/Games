@@ -54,26 +54,4 @@
             </div>
         </div>
     </div>
-    <div [ngClass]="{ 'hide': (ticTacToeSrvc == null)}">
-        <div class="game-viewport">
-            <table class="text-center {{winningClass}}">
-                <tr *ngFor="let row of grid; let r = index" >
-                    <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)">
-                        <i class="fa" [ngClass]="{'fa-times': grid[r][c].marker === true, 'fa-circle': grid[r][c].marker === false, 'text-success blink': grid[r][c].isWinningSequence }" ></i>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <nav id="footer" class="navbar fixed-bottom navbar-light bg-light" [ngClass]="{ 'hide': (ticTacToeSrvc == null)}">
-        <span class="pull-left">
-            {{player1name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': isMarkerX, 'fa-circle': !isMarkerX }" ></i> <b>-</b> {{player1Score}}
-        </span>    
-        <span class="">
-            Draw <b>-</b> {{noWinner}}
-        </span>
-        <span class="pull-right" [ngClass]="{ 'text-danger': (isPlayer1 === false) }">
-            {{player2name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !isMarkerX, 'fa-circle': isMarkerX }" ></i> <b>-</b> {{player2Score}}
-        </span>
-    </nav>
 </div>

@@ -7,6 +7,7 @@ import { TicTacToeGameModel, TicTacToePlayerModel } from '../../models/tic-tac-t
 
 @Injectable()
 export class TicTacToeRemoteService implements ITicTacToeService {
+    gameStarted: EventEmitter<null> = new EventEmitter();
     messageReceived: EventEmitter<string> = new EventEmitter();
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();
@@ -14,10 +15,8 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     constructor(appSrvc: AppService) {
     }
 
-    startNewGame(gameModel: TicTacToeGameModel, playerModel: TicTacToePlayerModel): string {
-        this.changeActivePlayer.emit();
-        this.swapMarkers.emit();
-        return gameModel.id;
+    startNewGame(gameModel: TicTacToeGameModel, playerModel: TicTacToePlayerModel): void {
+        this.gameStarted.emit();
     }
     onSend(): string {
         throw new Error("Method not implemented.");

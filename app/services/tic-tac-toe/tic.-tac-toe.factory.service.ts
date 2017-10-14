@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import { Injectable, EventEmitter } from '@angular/core'
 import { GameType } from '../../models/enums'
 import { AppService } from '../common.service';
 import { TicTacToeGameModel } from '../../models/tic-tac-toe.model';
@@ -8,17 +8,20 @@ import { TicTacToeRemoteService } from '../tic-tac-toe/tic-tac-toe.remote.servic
 
 @Injectable()
 export class TicTacToeFactoryService {
-    constructor(private appSrvc: AppService) {}
+    constructor(private appSrvc: AppService) {
+    }
 
     resolve(type: GameType): ITicTacToeService {
+        var srvc: ITicTacToeService = null;    
+
         if(GameType.TwoPlayer === type){
-            return (new TicTacToeTwoPlayerService(this.appSrvc))
+            srvc = (new TicTacToeTwoPlayerService(this.appSrvc))
         } else if(GameType.Remote === type) {
-            return (new TicTacToeRemoteService(this.appSrvc));
+            srvc = (new TicTacToeRemoteService(this.appSrvc));
         } else if(GameType.Computer == type) {
             return null;
         }
         
-        return null;
+        return srvc;
     }
 }

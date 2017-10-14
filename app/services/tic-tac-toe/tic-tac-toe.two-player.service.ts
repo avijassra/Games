@@ -5,6 +5,7 @@ import { TicTacToeGameModel, TicTacToePlayerModel } from '../../models/tic-tac-t
 
 @Injectable()
 export class TicTacToeTwoPlayerService implements ITicTacToeService {
+    gameStarted: EventEmitter<null> = new EventEmitter();
     messageReceived: EventEmitter<string> = new EventEmitter();
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();
@@ -12,11 +13,8 @@ export class TicTacToeTwoPlayerService implements ITicTacToeService {
     constructor(appSrvc: AppService) {
     }
 
-    startNewGame(gameModel: TicTacToeGameModel, playerModel: TicTacToePlayerModel): string {
-        debugger;
-        this.changeActivePlayer.emit();
-        this.swapMarkers.emit();
-        return gameModel.id;
+    startNewGame(gameModel: TicTacToeGameModel, playerModel: TicTacToePlayerModel): void {
+        this.gameStarted.emit();
     }
 
     onSend(): string {
