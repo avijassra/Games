@@ -22,7 +22,7 @@ export class TicTacToeComponent implements OnInit {
     selectedGameType: number;
     p1Name: string;
     p2Name: string;
-    isMarkerX: boolean;
+    isMarkerX = true;
     winningPlayer: string;
 
     gameModel: TicTacToeGameModel = null;
@@ -52,14 +52,14 @@ export class TicTacToeComponent implements OnInit {
         this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
         this.ticTacToeSrvc.gameStarted.subscribe(() => this.onGameStarted());
 
-        this.gameModel = new TicTacToeGameModel();
-        this.playerModel = new TicTacToePlayerModel(this.p1Name, this.p2Name);
+        this.gameModel = new TicTacToeGameModel(this.gridSize, this.selectedGameType);
+        this.playerModel = new TicTacToePlayerModel(this.p1Name, this.isMarkerX, this.p2Name);
         this.ticTacToeSrvc.startNewGame(this.gameModel, this.playerModel);
     }
 
     onGameStarted() {
         sessionStorage.setItem("gameModel", JSON.stringify(this.gameModel));
         sessionStorage.setItem("playerModel", JSON.stringify(this.playerModel));
-        this.router.navigate(['/tictactoe', this.gameModel.id]);
+        this.router.navigate(['/tic-tac-toe', this.gameModel.id]);
     }
 }

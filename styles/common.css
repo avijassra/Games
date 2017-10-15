@@ -6,6 +6,22 @@
     display: inherit !important;
 }
 
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
 .top5 { min-height: 5px !important; }
 .top7 { min-height:7px !important; }
 .top10 { min-height:10px !important; }

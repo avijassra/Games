@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import * as _ from 'lodash'
 import { AppService } from '../services/common.service'
+import { GameType } from '../models/enums'
 
 export class TicTacToeGameModel {
     public id: string;
@@ -12,7 +13,7 @@ export class TicTacToeGameModel {
     public isGameOn: boolean;
     public noOfCellsMarkedInGame: number;
 
-    constructor(gId?: string, gName?: string) {
+    constructor(public gridSize:number, public gameType :GameType, gId?: string, gName?: string) {
         this.id = (gId != null ? gId : (new AppService()).newGuid());
         this.name = (gName != null? gName : this.id);
     }
@@ -29,7 +30,7 @@ export class TicTacToePlayerModel {
     public player2Name: string;
     public player2Score = 0;
 
-    constructor(p1Name?: string, p2Name?: string, p1Id?: string, p2Id?: string) {
+    constructor(p1Name?: string, isP1MarkerX?: boolean, p2Name?: string, p1Id?: string, p2Id?: string) {
         var appSrvc: AppService;
         if(p1Id == null || p2Id == null) {
             appSrvc = new AppService();
@@ -37,12 +38,9 @@ export class TicTacToePlayerModel {
 
         this.player1Id = (p1Id != null ? p1Id : appSrvc.newGuid());
         this.player1Name = (p1Name != null ? p1Name : 'Player 1');
+        this.isPlayer1MarkerX = isP1MarkerX || true;
         this.player2Id = (p2Id != null ? p2Id : appSrvc.newGuid());
         this.player2Name = (p2Name != null ? p2Name : 'Player 2');
-    }
-
-    get isActivePlayerMarkerX(): boolean {
-        return (this.isPlayer1Active ? this.isPlayer1MarkerX : !this.isPlayer1Active);
     }
 }
 

@@ -1,11 +1,10 @@
 <div class="ttt-g">
     <div class="container">
-        hello world
         <div class="game-viewport">
             <table class="text-center {{winningClass}}">
                 <tr *ngFor="let row of gameModel.grid; let r = index" >
                     <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)">
-                        <i class="fa" [ngClass]="{'fa-times': grid[r][c].marker === true, 'fa-circle': grid[r][c].marker === false, 'text-success blink': grid[r][c].isWinningSequence }" ></i>
+                        <i class="fa" [ngClass]="{'fa-times': gameModel.grid[r][c].marker === true, 'fa-circle': gameModel.grid[r][c].marker === false, 'text-success blink': gameModel.grid[r][c].isWinningSequence }" ></i>
                     </td>
                 </tr>
             </table>
@@ -13,13 +12,13 @@
     </div>
     <nav id="footer" class="navbar fixed-bottom navbar-light bg-light" [ngClass]="{ 'hide': (playerModel == null)}">
         <span class="pull-left">
-            {{playerModel.player1name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': isMarkerX, 'fa-circle': !isMarkerX }" ></i> <b>-</b> {{player1Score}}
+            {{playerModel.player1Name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': isMarkerX, 'fa-circle': !isMarkerX }" ></i> <b>-</b> {{player1Score}}
         </span>    
         <span class="">
             Draw <b>-</b> {{noWinner}}
         </span>
         <span class="pull-right" [ngClass]="{ 'text-danger': (isPlayer1 === false) }">
-            {{playerModel.player2name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !isMarkerX, 'fa-circle': isMarkerX }" ></i> <b>-</b> {{player2Score}}
+            {{playerModel.player2Name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !isMarkerX, 'fa-circle': isMarkerX }" ></i> <b>-</b> {{player2Score}}
         </span>
     </nav>
 </div>

@@ -21,9 +21,9 @@ import { TicTacToeTwoPlayerService } from './services/tic-tac-toe/tic-tac-toe.tw
 import { TicTacToeRemoteService } from './services/tic-tac-toe/tic-tac-toe.remote.service';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'ticTacToe', pathMatch: 'full'},
-    { path: 'tictactoe', component: TicTacToeComponent },
-    { path: 'tictactoe/:gameId', component: TicTacToeGameComponent },
+    { path: '', redirectTo: 'tic-tac-toe', pathMatch: 'full'},
+    { path: 'tic-tac-toe', component: TicTacToeComponent },
+    { path: 'tic-tac-toe/:gameId', component: TicTacToeGameComponent },
     { path: '2048', component: Puzzle2048Component },
     // { path: 'users', component: UserComponent },
     // { path: 'itunes-search', component: ItunesSearchComponent },
