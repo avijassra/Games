@@ -2,13 +2,13 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HubConnection } from '@aspnet/signalr-client';
 import { AppService } from '../common.service';
 import { ITicTacToeService } from '../tic-tac-toe/i.tic-tac-toe.service';
-import { TicTacToeGameModel, TicTacToePlayerModel } from '../../models/tic-tac-toe.model';
+import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '../../models/tic-tac-toe.model';
 
 
 @Injectable()
 export class TicTacToeRemoteService implements ITicTacToeService {
     gameStarted: EventEmitter<null> = new EventEmitter();
-    messageReceived: EventEmitter<string> = new EventEmitter();
+    messageReceived: EventEmitter<TicTacToeMarkerModel> = new EventEmitter();
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();
 
@@ -18,10 +18,10 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     startNewGame(gameModel: TicTacToeGameModel, playerModel: TicTacToePlayerModel): void {
         this.gameStarted.emit();
     }
-    onSend(): string {
+    onSend(row:number, col:number, isMarkerX: boolean): void {
         throw new Error("Method not implemented.");
     }
-    onReceive(): string {
+    onReceive(row:number, col:number, isMarkerX: boolean): void {
         throw new Error("Method not implemented.");
     }
 }

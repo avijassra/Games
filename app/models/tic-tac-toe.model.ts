@@ -53,3 +53,7 @@ export class TicTacToeModel {
         this.isWinningSequence = false;
     }
 }
+
+export class TicTacToeMarkerModel {
+    constructor(public row: number, public col: number, public isMarkerX: boolean){};
+}
