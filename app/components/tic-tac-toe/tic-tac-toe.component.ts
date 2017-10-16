@@ -63,3 +63,5 @@ export class TicTacToeComponent implements OnInit {
         this.router.navigate(['/tic-tac-toe', this.gameModel.id]);
     }
 }
+
+//https://www.quora.com/What-is-the-sluttiest-thing-youve-done-that-was-out-of-character-for-you

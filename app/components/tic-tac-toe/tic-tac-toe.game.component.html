@@ -12,13 +12,13 @@
     </div>
     <nav id="footer" class="navbar fixed-bottom navbar-light bg-light" [ngClass]="{ 'hide': (playerModel == null)}">
         <span class="pull-left">
-            {{playerModel.player1Name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': isMarkerX, 'fa-circle': !isMarkerX }" ></i> <b>-</b> {{player1Score}}
+            {{playerModel.player1Name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': playerModel.isPlayer1MarkerX, 'fa-circle': !playerModel.isPlayer1MarkerX, 'text-danger': playerModel.isPlayer1Active }" ></i> <b>-</b> {{playerModel.player1Score}}
         </span>    
         <span class="">
             Draw <b>-</b> {{noWinner}}
         </span>
         <span class="pull-right" [ngClass]="{ 'text-danger': (isPlayer1 === false) }">
-            {{playerModel.player2Name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !isMarkerX, 'fa-circle': isMarkerX }" ></i> <b>-</b> {{player2Score}}
+            {{playerModel.player2Name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !playerModel.isPlayer1MarkerX, 'fa-circle': playerModel.isPlayer1MarkerX, 'text-danger': !playerModel.isPlayer1Active }" ></i> <b>-</b> {{playerModel.player2Score}}
         </span>
     </nav>
 </div>
