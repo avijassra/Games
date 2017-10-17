@@ -11,6 +11,10 @@
     -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
 
+.center {
+    margin: 0px auto;
+}
+
 @keyframes blink-animation {
     to {
         visibility: hidden;
