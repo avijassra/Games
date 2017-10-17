@@ -49,6 +49,7 @@ export class TicTacToeComponent implements OnInit {
     }
 
     startTheGame(): void {
+        debugger;
         this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
         this.ticTacToeSrvc.gameStarted.subscribe(() => this.onGameStarted());
 

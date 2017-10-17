@@ -39,6 +39,7 @@ export class TicTacToePlayerModel {
         this.player1Id = (p1Id != null ? p1Id : appSrvc.newGuid());
         this.player1Name = (p1Name != null ? p1Name : 'Player 1');
         this.isPlayer1MarkerX = isP1MarkerX || true;
+        this.isPlayer1Active = true;
         this.player2Id = (p2Id != null ? p2Id : appSrvc.newGuid());
         this.player2Name = (p2Name != null ? p2Name : 'Player 2');
     }

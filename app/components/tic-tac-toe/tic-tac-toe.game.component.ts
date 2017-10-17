@@ -24,6 +24,7 @@ import { TicTacToeFactoryService } from '../../services/tic-tac-toe/tic.-tac-toe
 export class TicTacToeGameComponent implements OnInit {
     ticTacToeSrvc: ITicTacToeService = null;
     winningPlayer: string;
+    screenBlocker: boolean;
 
     gameModel: TicTacToeGameModel = null;
     playerModel: TicTacToePlayerModel = null;
@@ -41,6 +42,12 @@ export class TicTacToeGameComponent implements OnInit {
         } else {
             this.router.navigate(['tic-tac-toe']);
         }
+    }
+
+    
+
+    get getActivePlayerName() {
+        return (this.playerModel.isPlayer1Active ? this.playerModel.player1Name : this.playerModel.player2Name);
     }
 
     ngOnInit(): void {
@@ -72,6 +79,7 @@ export class TicTacToeGameComponent implements OnInit {
         if(this.gameModel.isGameOn && this.gameModel.grid[row][col].marker === null) {
             var getMarker = (this.playerModel.isPlayer1Active ? this.playerModel.isPlayer1MarkerX : !this.playerModel.isPlayer1MarkerX);
             this.ticTacToeSrvc.onSend(row, col, getMarker);
+            this.screenBlocker = true;
         }
     }
 
@@ -121,6 +129,7 @@ export class TicTacToeGameComponent implements OnInit {
                 // this.noWinner = this.totalGamesPlayed - (this.player1Score + this.player2Score);
                 // this.isPlayer1 = null;
             } else {
+                //this.screenBlocker = false;
                 //this.isPlayer1 = !this.isPlayer1;
             }
         }

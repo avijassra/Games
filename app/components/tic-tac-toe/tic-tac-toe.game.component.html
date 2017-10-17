@@ -1,6 +1,6 @@
 <div class="ttt-g">
     <div class="container">
-        <div class="game-viewport">
+        <div class="game-viewport" style="border:2px solid blue;">
             <table class="text-center {{winningClass}}">
                 <tr *ngFor="let row of gameModel.grid; let r = index" >
                     <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)">
@@ -8,6 +8,13 @@
                     </td>
                 </tr>
             </table>
+            <div class="game-viewport-overlay" [ngClass]="{ 'hide': !screenBlocker }" style="border:2px solid green;">
+                <div class="row text-center">
+                    <div class="col-xs-12">
+                        {{getActivePlayerName}}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <nav id="footer" class="navbar fixed-bottom navbar-light bg-light" [ngClass]="{ 'hide': (playerModel == null)}">

@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-sm-5">
                         <div class="input-group">
-                            <input class="form-control" [(ngModel)]="player1name" placeholder="Player 1" >
+                            <input class="form-control" [(ngModel)]="p1Name" placeholder="Player 1" >
                             <span class="input-group-addon">
                                 <i class="fa fa-lg" [ngClass]="{ 'fa-times': isMarkerX, 'fa-circle': !isMarkerX }" (click)="changeTheMarker();" ></i>
                             </span>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-sm-5">
                         <div class="input-group">
-                            <input class="form-control" [(ngModel)]="player2name" placeholder="Player 2" >
+                            <input class="form-control" [(ngModel)]="p2Name" placeholder="Player 2" >
                             <span class="input-group-addon">
                                 <i class="fa fa-lg" [ngClass]="{ 'fa-times': !isMarkerX, 'fa-circle': isMarkerX }" ></i>
                             </span>
