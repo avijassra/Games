@@ -54,11 +54,11 @@ export class TicTacToeComponent implements OnInit {
         this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
         this.gameModel = new TicTacToeGameModel(this.gridSize, this.selectedGameType);
-        this.gameModel.addHomePlayer(this.screenId, this.p1Name, this.isMarkerX);
+        this.gameModel.players.addHomePlayer(this.screenId, this.p1Name, this.isMarkerX);
     }
 
     onGameStarted(player: TicTacToePlayerModel) {
-        this.gameModel.addGuestPlayer(player.screenId, player.name);
+        this.gameModel.players.addGuestPlayer(player.screenId, player.name);
         sessionStorage.setItem("gameModel", JSON.stringify(this.gameModel));
         //sessionStorage.setItem("playerModel", JSON.stringify(this.playerModel));
         this.router.navigate(['/tic-tac-toe', this.gameModel.id]);

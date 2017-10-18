@@ -10,26 +10,12 @@ export class TicTacToeGameModel {
     public isGameOn: boolean;
     public noOfCellsMarkedInGame: number;
 
-    public home: TicTacToePlayerModel;
-    public guest: TicTacToePlayerModel;
+    public players: TicTacToeGamePlayersModel;
 
     constructor(public gridSize:number, public gameType :GameType, public id?: string, public name?: string) {
         this.id = (this.id || (new AppService()).newGuid());
         this.name = (this.name || this.id);
-    }
-
-    addHomePlayer(screenId:string, name: string, isMarkerX: boolean) {
-        this.home = new TicTacToePlayerModel(screenId, name);
-        this.home.hasTurnToPlay = true;
-        this.home.isMarkerX = isMarkerX;
-
-        if(this.guest != null) {
-            this.guest.isMarkerX = !this.home.isMarkerX;
-        }
-    }
-
-    addGuestPlayer(screenId:string, name: string) {
-        this.guest = new TicTacToePlayerModel(screenId, name);
+        this.players = new TicTacToeGamePlayersModel();
     }
 }
 
@@ -61,9 +47,24 @@ export class TicTacToeGameModel {
 //     }
 // }
 
+export class TicTacToeGamePlayersModel {
+    public isHomeHasTurnToPlay: boolean;
+    public isHomeMarkerX: boolean;
+    public home: TicTacToePlayerModel;
+    public guest: TicTacToePlayerModel;
+
+    addHomePlayer(screenId:string, name: string, isMarkerX: boolean, id?: string) {
+        this.home = new TicTacToePlayerModel(screenId, name, id);
+        this.isHomeHasTurnToPlay = true;
+        this.isHomeMarkerX = isMarkerX;
+    }
+
+    addGuestPlayer(screenId:string, name: string, id?: string) {
+        this.guest = new TicTacToePlayerModel(screenId, name, id);
+    }
+}
+
 export class TicTacToePlayerModel {
-    public hasTurnToPlay: boolean;
-    public isMarkerX: boolean;
     public score: number;
 
     constructor(public screenId: string, public name: string, public id?: string) {

@@ -44,10 +44,8 @@ export class TicTacToeGameComponent implements OnInit {
         }
     }
 
-    
-
     get getActivePlayerName() {
-        return (this.gameModel.home.hasTurnToPlay ? this.gameModel.home.name : this.gameModel.guest.name);
+        return (this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.home.name : this.gameModel.players.guest.name);
     }
 
     ngOnInit(): void {
@@ -77,7 +75,7 @@ export class TicTacToeGameComponent implements OnInit {
 
     ticOrTac(row:number, col:number): void {
         if(this.gameModel.isGameOn && this.gameModel.grid[row][col].marker === null) {
-            var getMarker = (this.playerModel.isPlayer1Active ? this.playerModel.isPlayer1MarkerX : !this.playerModel.isPlayer1MarkerX);
+            var getMarker = (this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.isHomeMarkerX : !this.gameModel.players.isHomeMarkerX);
             this.ticTacToeSrvc.onSend(row, col, getMarker);
             this.screenBlocker = true;
         }
@@ -117,9 +115,9 @@ export class TicTacToeGameComponent implements OnInit {
         
         if(this.checkForWinningSequence(markerModel.row, markerModel.col, markerModel.isMarkerX)) {
             this.gameModel.totalGamesPlayed += 1;
-            this.playerModel.player1Score += (this.playerModel.isPlayer1Active ? 1 : 0);
-            this.playerModel.player2Score  += (this.playerModel.isPlayer1Active ? 0 : 1);
-            this.winningPlayer = `${this.playerModel.isPlayer1Active ? this.playerModel.player1Name : this.playerModel.player2Name} is a winner`;
+            this.gameModel.players.home.score += (this.gameModel.players.isHomeHasTurnToPlay ? 1 : 0);
+            this.gameModel.players.guest.score  += (this.gameModel.players.isHomeHasTurnToPlay ? 0 : 1);
+            this.winningPlayer = `${this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.home.name : this.gameModel.players.guest.name} is a winner`;
             //this.isPlayer1 = null;
             this.gameModel.isGameOn = false;
         } else {
@@ -136,7 +134,7 @@ export class TicTacToeGameComponent implements OnInit {
     }
 
     onChangeActivePlayer() {
-        this.playerModel.isPlayer1Active = !this.playerModel.isPlayer1Active;
+        this.gameModel.players.isHomeHasTurnToPlay = !this.gameModel.players.isHomeHasTurnToPlay;
     }
 
     onSwapMarkers() {

@@ -19,13 +19,13 @@
     </div>
     <nav id="footer" class="navbar fixed-bottom navbar-light bg-light">
         <span class="pull-left">
-            {{gameModel.home.name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': gameModel.home.isMarkerX, 'fa-circle': !gameModel.home.isMarkerX, 'text-danger': gameModel.home.hasTurnToPlay }" ></i> <b>-</b> {{gameModel.home.score}}
+            {{gameModel.players.home.name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': gameModel.players.isHomeMarkerX, 'fa-circle': !gameModel.players.isHomeMarkerX, 'text-danger': gameModel.players.isHomeHasTurnToPlay }" ></i> <b>-</b> {{gameModel.players.home.score}}
         </span>    
         <span class="">
             Draw <b>-</b> {{noWinner}}
         </span>
         <span class="pull-right">
-            {{gameModel.guest.name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !gameModel.home.isMarkerX, 'fa-circle': gameModel.home.isMarkerX, 'text-danger': !gameModel.home.hasTurnToPlay }" ></i> <b>-</b> {{gameModel.guest.score}}
+            {{gameModel.players.guest.name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !gameModel.players.isHomeMarkerX, 'fa-circle': gameModel.players.isHomeMarkerX, 'text-danger': !gameModel.players.isHomeHasTurnToPlay }" ></i> <b>-</b> {{gameModel.players.guest.score}}
         </span>
     </nav>
 </div>
