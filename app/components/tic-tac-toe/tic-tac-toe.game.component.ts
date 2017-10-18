@@ -30,6 +30,7 @@ export class TicTacToeGameComponent implements OnInit {
     playerModel: TicTacToePlayerModel = null;
 
     constructor(private router: Router, private factorySrvc: TicTacToeFactoryService) {
+        debugger;
         this.gameModel = JSON.parse(sessionStorage.getItem("gameModel")) as TicTacToeGameModel;
         this.playerModel = JSON.parse(sessionStorage.getItem("playerModel")) as TicTacToePlayerModel;
         

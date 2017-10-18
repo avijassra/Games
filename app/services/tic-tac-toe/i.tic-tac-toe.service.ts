@@ -7,7 +7,7 @@ export interface ITicTacToeService {
     changeActivePlayer: EventEmitter<null>;
     swapMarkers: EventEmitter<null>;
 
-    startNewGame(gameMode: TicTacToeGameModel, playerModel: TicTacToePlayerModel): void;
+    startNewGame(gameMode: TicTacToeGameModel, guest?: TicTacToePlayerModel): void;
     onSend(row:number, col:number, isMarkerX: boolean): void;
     onReceive(row:number, col:number, isMarkerX: boolean): void;
 }

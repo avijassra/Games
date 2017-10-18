@@ -7,7 +7,7 @@ import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '
 
 @Injectable()
 export class TicTacToeRemoteService implements ITicTacToeService {
-    gameStarted: EventEmitter<null> = new EventEmitter();
+    gameStarted: EventEmitter<TicTacToePlayerModel> = new EventEmitter();
     messageReceived: EventEmitter<TicTacToeMarkerModel> = new EventEmitter();
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();
@@ -15,7 +15,7 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     constructor(appSrvc: AppService) {
     }
 
-    startNewGame(gameModel: TicTacToeGameModel, playerModel: TicTacToePlayerModel): void {
+    startNewGame(gameModel: TicTacToeGameModel): void {
         this.gameStarted.emit();
     }
     onSend(row:number, col:number, isMarkerX: boolean): void {
