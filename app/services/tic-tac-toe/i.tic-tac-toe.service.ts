@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '../../models/tic-tac-toe.model';
 
 export interface ITicTacToeService {
-    gameStarted: EventEmitter<null>;
+    gameStarted: EventEmitter<TicTacToePlayerModel>;
     messageReceived: EventEmitter<TicTacToeMarkerModel>;
     changeActivePlayer: EventEmitter<null>;
     swapMarkers: EventEmitter<null>;

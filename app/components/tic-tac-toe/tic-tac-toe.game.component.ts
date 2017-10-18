@@ -47,7 +47,7 @@ export class TicTacToeGameComponent implements OnInit {
     
 
     get getActivePlayerName() {
-        return (this.playerModel.isPlayer1Active ? this.playerModel.player1Name : this.playerModel.player2Name);
+        return (this.gameModel.home.hasTurnToPlay ? this.gameModel.home.name : this.gameModel.guest.name);
     }
 
     ngOnInit(): void {

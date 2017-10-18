@@ -17,15 +17,15 @@
             </div>
         </div>
     </div>
-    <nav id="footer" class="navbar fixed-bottom navbar-light bg-light" [ngClass]="{ 'hide': (playerModel == null)}">
+    <nav id="footer" class="navbar fixed-bottom navbar-light bg-light">
         <span class="pull-left">
-            {{playerModel.player1Name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': playerModel.isPlayer1MarkerX, 'fa-circle': !playerModel.isPlayer1MarkerX, 'text-danger': playerModel.isPlayer1Active }" ></i> <b>-</b> {{playerModel.player1Score}}
+            {{gameModel.home.name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': gameModel.home.isMarkerX, 'fa-circle': !gameModel.home.isMarkerX, 'text-danger': gameModel.home.hasTurnToPlay }" ></i> <b>-</b> {{gameModel.home.score}}
         </span>    
         <span class="">
             Draw <b>-</b> {{noWinner}}
         </span>
-        <span class="pull-right" [ngClass]="{ 'text-danger': (isPlayer1 === false) }">
-            {{playerModel.player2Name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !playerModel.isPlayer1MarkerX, 'fa-circle': playerModel.isPlayer1MarkerX, 'text-danger': !playerModel.isPlayer1Active }" ></i> <b>-</b> {{playerModel.player2Score}}
+        <span class="pull-right">
+            {{gameModel.guest.name}} <i class="fa fa-lg" [ngClass]="{ 'fa-times': !gameModel.home.isMarkerX, 'fa-circle': gameModel.home.isMarkerX, 'text-danger': !gameModel.home.hasTurnToPlay }" ></i> <b>-</b> {{gameModel.guest.score}}
         </span>
     </nav>
 </div>
