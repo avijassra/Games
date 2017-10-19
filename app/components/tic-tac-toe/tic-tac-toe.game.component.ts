@@ -24,17 +24,17 @@ import { TicTacToeFactoryService } from '../../services/tic-tac-toe/tic.-tac-toe
 export class TicTacToeGameComponent implements OnInit {
     ticTacToeSrvc: ITicTacToeService = null;
     winningPlayer: string;
+    screenId: string;
     screenBlocker: boolean;
 
     gameModel: TicTacToeGameModel = null;
     playerModel: TicTacToePlayerModel = null;
 
     constructor(private router: Router, private factorySrvc: TicTacToeFactoryService) {
-        debugger;
         this.gameModel = JSON.parse(sessionStorage.getItem("gameModel")) as TicTacToeGameModel;
-        this.playerModel = JSON.parse(sessionStorage.getItem("playerModel")) as TicTacToePlayerModel;
-        
-        if(this.gameModel != null && this.playerModel != null ) {
+        this.screenId = sessionStorage.getItem("screenId");
+
+        if(this.gameModel != null) {
             this.ticTacToeSrvc = factorySrvc.resolve(this.gameModel.gameType);
             this.ticTacToeSrvc.messageReceived.subscribe((markerModel: TicTacToeMarkerModel) => this.onMessageReceived(markerModel));
             this.ticTacToeSrvc.changeActivePlayer.subscribe(() => this.onChangeActivePlayer());
@@ -135,7 +135,12 @@ export class TicTacToeGameComponent implements OnInit {
     }
 
     onChangeActivePlayer() {
+        debugger;
         this.gameModel.players.isHomeHasTurnToPlay = !this.gameModel.players.isHomeHasTurnToPlay;
+        
+        if(this.screenId == this.gameModel.players.getPlayerWithTurn().screenId) {
+            this.screenBlocker = false;
+        }
     }
 
     onSwapMarkers() {

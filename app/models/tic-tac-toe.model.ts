@@ -19,34 +19,6 @@ export class TicTacToeGameModel {
     }
 }
 
-// export class TicTacToePlayer1Model {
-//     public player1Id: string;
-//     public player1ScreenId: string;
-//     public player1Name: string;
-//     public isPlayer1Active: boolean;
-//     public isPlayer1MarkerX: boolean;
-//     public player1Score = 0;
-
-//     public player2Id: string;
-//     public player2ScreenId: string;
-//     public player2Name: string;
-//     public player2Score = 0;
-
-//     constructor(p1Name?: string, isP1MarkerX?: boolean, p2Name?: string, p1Id?: string, p2Id?: string) {
-//         var appSrvc: AppService;
-//         if(p1Id == null || p2Id == null) {
-//             appSrvc = new AppService();
-//         }
-
-//         this.player1Id = (p1Id != null ? p1Id : appSrvc.newGuid());
-//         this.player1Name = (p1Name != null ? p1Name : 'Player 1');
-//         this.isPlayer1MarkerX = isP1MarkerX || true;
-//         this.isPlayer1Active = true;
-//         this.player2Id = (p2Id != null ? p2Id : appSrvc.newGuid());
-//         this.player2Name = (p2Name != null ? p2Name : 'Player 2');
-//     }
-// }
-
 export class TicTacToeGamePlayersModel {
     public isHomeHasTurnToPlay: boolean;
     public isHomeMarkerX: boolean;
@@ -61,6 +33,10 @@ export class TicTacToeGamePlayersModel {
 
     addGuestPlayer(screenId:string, name: string, id?: string) {
         this.guest = new TicTacToePlayerModel(screenId, name, id);
+    }
+
+    getPlayerWithTurn() : TicTacToePlayerModel {
+        return (this.isHomeHasTurnToPlay ? this.home : this.guest);
     }
 }
 
