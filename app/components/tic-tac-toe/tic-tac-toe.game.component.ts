@@ -27,11 +27,11 @@ export class TicTacToeGameComponent implements OnInit {
     screenId: string;
     screenBlocker: boolean;
 
-    gameModel: TicTacToeGameModel = null;
+    //gameModel: TicTacToeGameModel = null;
     playerModel: TicTacToePlayerModel = null;
 
-    constructor(private router: Router, private factorySrvc: TicTacToeFactoryService) {
-        this.gameModel = JSON.parse(sessionStorage.getItem("gameModel")) as TicTacToeGameModel;
+    constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
+        //this.gameModel = JSON.parse(sessionStorage.getItem("gameModel")) as TicTacToeGameModel;
         this.screenId = sessionStorage.getItem("screenId");
 
         if(this.gameModel != null) {
@@ -110,7 +110,6 @@ export class TicTacToeGameComponent implements OnInit {
     }
 
     onMessageReceived(markerModel: TicTacToeMarkerModel) {
-        debugger;
         this.gameModel.noOfCellsMarkedInGame += 1;
         this.gameModel.grid[markerModel.row][markerModel.col].marker = markerModel.isMarkerX;
         

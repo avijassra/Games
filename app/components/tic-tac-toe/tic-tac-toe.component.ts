@@ -21,15 +21,15 @@ export class TicTacToeComponent implements OnInit {
     p1Name: string;
     p2Name: string;
     winningPlayer: string;
-    gameModel: TicTacToeGameModel = null;
     playerModel: TicTacToePlayerModel = null;
 
     isMarkerX = true;
     reqToStartGame = false;
     gridSize = 3;
 
-    constructor(private router: Router, appSrvc: AppService, private factorySrvc: TicTacToeFactoryService) {
+    constructor(private router: Router, appSrvc: AppService, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
         this.screenId = appSrvc.newGuid();
+        this.gameModel.id = appSrvc.newGuid();
         this.selectedGameType = 0;
         this.gridSize = 3;
 
@@ -53,7 +53,8 @@ export class TicTacToeComponent implements OnInit {
         this.reqToStartGame = true;
         this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
-        this.gameModel = new TicTacToeGameModel(this.gridSize, this.selectedGameType);
+        this.gameModel.gridSize = this.gridSize;
+        this.gameModel.gameType = this.selectedGameType;
         this.gameModel.players.addHomePlayer(this.screenId, this.p1Name, this.isMarkerX);
         this.ticTacToeSrvc.startNewGame(this.gameModel);
     }
@@ -70,7 +71,7 @@ export class TicTacToeComponent implements OnInit {
         }
 
         this.gameModel.players.addGuestPlayer(sId, name, pId);
-        sessionStorage.setItem("gameModel", JSON.stringify(this.gameModel));
+        //sessionStorage.setItem("gameModel", JSON.stringify(this.gameModel));
         sessionStorage.setItem("screenId", this.screenId);
         this.router.navigate(['/tic-tac-toe', this.gameModel.id]);
     }

@@ -3,6 +3,7 @@ import * as _ from 'lodash'
 import { AppService } from '../services/common.service'
 import { GameType } from '../models/enums'
 
+@Injectable()
 export class TicTacToeGameModel {
     public grid: TicTacToeModel[][];
     public gameHistory: TicTacToeModel[][][];
@@ -11,10 +12,15 @@ export class TicTacToeGameModel {
     public noOfCellsMarkedInGame: number;
 
     public players: TicTacToeGamePlayersModel;
+    public gridSize:number; 
+    public gameType :GameType; 
+    public id: string; 
+    public name: string;
 
-    constructor(public gridSize:number, public gameType :GameType, public id?: string, public name?: string) {
-        this.id = (this.id || (new AppService()).newGuid());
-        this.name = (this.name || this.id);
+    //constructor(public gridSize:number, public gameType :GameType, public id?: string, public name?: string) {
+    constructor() {
+        //this.id = (this.id || (new AppService()).newGuid());
+        //this.name = (this.name || this.id);
         this.players = new TicTacToeGamePlayersModel();
     }
 }

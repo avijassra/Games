@@ -12,7 +12,7 @@ import { TicTacToeGameComponent } from './components/tic-tac-toe/tic-tac-toe.gam
 import { Puzzle2048Component } from './components/2048/2048.component';
 // directive
 // Model
-//import { TicTacToeGameModel } from './models/tic-tac-toe.model';
+import { TicTacToeGameModel } from './models/tic-tac-toe.model';
 //Service
 import { AppService } from './services/common.service';
 import { ITicTacToeService } from './services/tic-tac-toe/i.tic-tac-toe.service';
@@ -48,7 +48,7 @@ const routes: Routes = [
         Puzzle2048Component
     ],
     providers: [
-        //TicTacToeGameModel,
+        TicTacToeGameModel,
         AppService,
         TicTacToeFactoryService
     ],
