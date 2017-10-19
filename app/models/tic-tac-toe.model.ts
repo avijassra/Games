@@ -32,13 +32,13 @@ export class TicTacToeGamePlayersModel {
     public guest: TicTacToePlayerModel;
 
     addHomePlayer(screenId:string, name: string, isMarkerX: boolean, id?: string) {
-        this.home = new TicTacToePlayerModel(screenId, name, id);
+        this.home = new TicTacToePlayerModel(screenId, (name || 'Player 1'), id);
         this.isHomeHasTurnToPlay = true;
         this.isHomeMarkerX = isMarkerX;
     }
 
     addGuestPlayer(screenId:string, name: string, id?: string) {
-        this.guest = new TicTacToePlayerModel(screenId, name, id);
+        this.guest = new TicTacToePlayerModel(screenId, (name || 'Player 2'), id);
     }
 
     getPlayerWithTurn() : TicTacToePlayerModel {

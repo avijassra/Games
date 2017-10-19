@@ -1,4 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
 import { AppService } from '../common.service';
 import { ITicTacToeService } from '../tic-tac-toe/i.tic-tac-toe.service';
 import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '../../models/tic-tac-toe.model';

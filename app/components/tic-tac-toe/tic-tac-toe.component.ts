@@ -63,7 +63,7 @@ export class TicTacToeComponent implements OnInit {
         var pId = null, sId, name;
         if(this.gameModel.gameType == GameType.TwoPlayer) {
             sId = this.screenId;
-            name = this.p2Name || 'Player 2';
+            name = this.p2Name;
         } else {
             pId = player.id
             sId = player.screenId;
@@ -71,7 +71,6 @@ export class TicTacToeComponent implements OnInit {
         }
 
         this.gameModel.players.addGuestPlayer(sId, name, pId);
-        //sessionStorage.setItem("gameModel", JSON.stringify(this.gameModel));
         sessionStorage.setItem("screenId", this.screenId);
         this.router.navigate(['/tic-tac-toe', this.gameModel.id]);
     }
