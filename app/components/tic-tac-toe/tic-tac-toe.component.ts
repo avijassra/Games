@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicTacToeGameModel, TicTacToePlayerModel } from '../../models/tic-tac-toe.model';
+
 import { AppService } from '../../services/common.service';
 import { GameType } from '../../models/enums'
 import { ITicTacToeService } from '../../services/tic-tac-toe/i.tic-tac-toe.service';
@@ -27,9 +28,9 @@ export class TicTacToeComponent implements OnInit {
     reqToStartGame = false;
     gridSize = 3;
 
-    constructor(private router: Router, appSrvc: AppService, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
-        this.screenId = appSrvc.newGuid();
-        this.gameModel.id = appSrvc.newGuid();
+    constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
+        this.screenId = AppService.newGuid();
+        this.gameModel.id = AppService.newGuid();
         this.selectedGameType = 0;
         this.gridSize = 3;
 

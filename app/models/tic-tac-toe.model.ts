@@ -51,7 +51,7 @@ export class TicTacToePlayerModel {
 
     constructor(public screenId: string, public name: string, public id?: string) {
         if(id == null) {
-            this.id = (new AppService()).newGuid();
+            this.id = AppService.newGuid();
         }
     }
 }

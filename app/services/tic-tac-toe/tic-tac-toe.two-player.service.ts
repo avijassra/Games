@@ -1,7 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
-import { AppService } from '../common.service';
 import { ITicTacToeService } from '../tic-tac-toe/i.tic-tac-toe.service';
 import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '../../models/tic-tac-toe.model';
 
@@ -12,7 +10,7 @@ export class TicTacToeTwoPlayerService implements ITicTacToeService {
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();
 
-    constructor(appSrvc: AppService) {
+    constructor() {
     }
 
     startNewGame(gameModel: TicTacToeGameModel): void {
