@@ -61,6 +61,7 @@ export class TicTacToeGameComponent implements OnInit {
     }
 
     resetGrid(): void {
+        debugger;
         this.gameModel.isGameOn = true;
         this.winningPlayer = null;
         this.gameModel.noOfCellsMarkedInGame = 0;
@@ -75,7 +76,6 @@ export class TicTacToeGameComponent implements OnInit {
 
     ticOrTac(row:number, col:number): void {
         if(this.gameModel.isGameOn && this.gameModel.grid[row][col].marker === null) {
-            debugger;
             this.screenBlocker = true;
             var getMarker = (this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.isHomeMarkerX : !this.gameModel.players.isHomeMarkerX);
             this.ticTacToeSrvc.onSend(row, col, getMarker);
@@ -118,12 +118,11 @@ export class TicTacToeGameComponent implements OnInit {
             this.gameModel.players.home.score += (this.gameModel.players.isHomeHasTurnToPlay ? 1 : 0);
             this.gameModel.players.guest.score  += (this.gameModel.players.isHomeHasTurnToPlay ? 0 : 1);
             this.winningPlayer = `${this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.home.name : this.gameModel.players.guest.name} is a winner`;
-            //this.isPlayer1 = null;
             this.gameModel.isGameOn = false;
         } else {
             if(this.gameModel.noOfCellsMarkedInGame === (this.gameModel.gridSize * this.gameModel.gridSize)) {
                 this.gameModel.totalGamesPlayed += 1;
-                // this.winningPlayer = "Its a DRAW !!!";
+                this.winningPlayer = "Its a DRAW !!!";
                 // this.noWinner = this.totalGamesPlayed - (this.player1Score + this.player2Score);
                 // this.isPlayer1 = null;
             } else {
@@ -134,13 +133,16 @@ export class TicTacToeGameComponent implements OnInit {
     }
 
     onChangeActivePlayer() {
-        debugger;
         this.gameModel.players.isHomeHasTurnToPlay = !this.gameModel.players.isHomeHasTurnToPlay;
         
-        if(this.screenId == this.gameModel.players.getPlayerWithTurn().screenId) {
-            this.reqForTurn = true;
+        if(this.gameModel.isGameOn) {
+            if(this.screenId == this.gameModel.players.getPlayerWithTurn().screenId) {
+                this.reqForTurn = true;
+            } else {
+                this.screenBlocker = false;
+            }
         } else {
-            this.screenBlocker = false;
+
         }
     }
 
