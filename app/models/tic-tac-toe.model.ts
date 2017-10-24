@@ -53,6 +53,7 @@ export class TicTacToePlayerModel {
         if(id == null) {
             this.id = AppService.newGuid();
         }
+        this.score = 0;
     }
 }
 

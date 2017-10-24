@@ -110,6 +110,7 @@ export class TicTacToeGameComponent implements OnInit {
     }
 
     onMessageReceived(markerModel: TicTacToeMarkerModel) {
+        debugger;
         this.gameModel.noOfCellsMarkedInGame += 1;
         this.gameModel.grid[markerModel.row][markerModel.col].marker = markerModel.isMarkerX;
         
@@ -142,7 +143,7 @@ export class TicTacToeGameComponent implements OnInit {
                 this.screenBlocker = false;
             }
         } else {
-
+            this.gameModel.noOfCellsMarkedInGame = 0;
         }
     }
 
