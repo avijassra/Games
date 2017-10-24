@@ -27,9 +27,7 @@ export class TicTacToeGameComponent implements OnInit {
     winningPlayer: string;
     screenId: string;
     screenBlocker: boolean;
-
-    //gameModel: TicTacToeGameModel = null;
-    playerModel: TicTacToePlayerModel = null;
+    reqForTurn = false;
 
     constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
         //this.gameModel = JSON.parse(sessionStorage.getItem("gameModel")) as TicTacToeGameModel;
@@ -140,11 +138,17 @@ export class TicTacToeGameComponent implements OnInit {
         this.gameModel.players.isHomeHasTurnToPlay = !this.gameModel.players.isHomeHasTurnToPlay;
         
         if(this.screenId == this.gameModel.players.getPlayerWithTurn().screenId) {
+            this.reqForTurn = true;
+        } else {
             this.screenBlocker = false;
         }
     }
 
     onSwapMarkers() {
 
+    }
+
+    reqForTurnAxn(): void {
+        this.screenBlocker = false;
     }
 }

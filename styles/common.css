@@ -82,3 +82,7 @@
 #footer span:last-child {
     margin-right: 100px;
 }
+
+.circle {
+    border-radius: 50% !important;
+}
