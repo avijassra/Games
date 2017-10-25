@@ -17,7 +17,7 @@
                         <div class="input-group">
                             <input class="form-control" [(ngModel)]="p1Name" placeholder="Player 1" >
                             <span class="input-group-addon">
-                                <i class="fa fa-lg" [ngClass]="{ 'fa-times': isMarkerX, 'fa-circle': !isMarkerX }" (click)="changeTheMarker();" ></i>
+                                <i class="fa fa-lg" [ngClass]="getHomePlayerMarker()" (click)="changeTheMarker();" ></i>
                             </span>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         <div class="input-group">
                             <input class="form-control" [(ngModel)]="p2Name" placeholder="Player 2" >
                             <span class="input-group-addon">
-                                <i class="fa fa-lg" [ngClass]="{ 'fa-times': !isMarkerX, 'fa-circle': isMarkerX }" ></i>
+                                <i class="fa fa-lg" [ngClass]="getGuestPlayerMarker()" ></i>
                             </span>
                         </div>    
                     </div>

@@ -23,6 +23,10 @@ export class TicTacToeComponent implements OnInit {
     p2Name: string;
     winningPlayer: string;
     playerModel: TicTacToePlayerModel = null;
+    marker: any = {
+        x: 'fa-check-circle',
+        o: 'fa-times-circle-o'
+    };
 
     isMarkerX = true;
     reqToStartGame = false;
@@ -31,6 +35,7 @@ export class TicTacToeComponent implements OnInit {
     constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
         this.screenId = AppService.newGuid();
         sessionStorage.setItem("screenId", this.screenId);
+        sessionStorage.setItem("marker", JSON.stringify(this.marker));
         this.gameModel.id = AppService.newGuid();
         this.selectedGameType = 0;
         this.gridSize = 3;
@@ -75,6 +80,12 @@ export class TicTacToeComponent implements OnInit {
         this.gameModel.players.addGuestPlayer(sId, name, pId);
         this.router.navigate(['/tic-tac-toe', this.gameModel.id]);
     }
-}
 
-//https://www.quora.com/What-is-the-sluttiest-thing-youve-done-that-was-out-of-character-for-you
+    getHomePlayerMarker() {
+        return (this.isMarkerX ? this.marker.x : this.marker.o );
+    }
+
+    getGuestPlayerMarker() {
+        return (this.isMarkerX ? this.marker.o : this.marker.x );
+    }
+}
