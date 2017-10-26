@@ -3,9 +3,8 @@
         <div class="game-viewport" >
             <table class="text-center {{winningClass}}">
                 <tr *ngFor="let row of gameModel.grid; let r = index" >
-                    <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)">
-                        <i class="fa {{gameModel.grid[r][c].marker}}" [ngClass]="{ 'text-success blink': (gameModel.grid[r][c].isWinningSequence == true) }"></i>
-                        {{gameModel.grid[r][c].isWinningSequence}}
+                    <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)"  [ngClass]="{ 'text-success blink': gameModel.grid[r][c].isWinningSequence }">
+                        <i class="fa {{gameModel.grid[r][c].marker}}"></i>
                     </td>
                 </tr>
             </table>
