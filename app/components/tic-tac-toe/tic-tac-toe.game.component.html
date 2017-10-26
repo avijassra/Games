@@ -4,7 +4,8 @@
             <table class="text-center {{winningClass}}">
                 <tr *ngFor="let row of gameModel.grid; let r = index" >
                     <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)">
-                        <i class="fa {{gameModel.grid[r][c].marker}}" [ngClass]="{ 'text-success blink': gameModel.grid[r][c].isWinningSequence }"></i>
+                        <i class="fa {{gameModel.grid[r][c].marker}}" [ngClass]="{ 'text-success blink': (gameModel.grid[r][c].isWinningSequence == true) }"></i>
+                        {{gameModel.grid[r][c].isWinningSequence}}
                     </td>
                 </tr>
             </table>
@@ -30,13 +31,13 @@
     </div>
     <nav id="footer" class="navbar fixed-bottom navbar-light bg-light">
         <span class="pull-left">
-            {{gameModel.players.home.name}} <i class="fa fa-lg  {{gameModel.players.isHomeMarkerX ? marker.x : marker.o}}" [ngClass]="{ 'text-danger': gameModel.players.isHomeHasTurnToPlay }" ></i> <b>-</b> {{gameModel.players.home.score}}
+            {{gameModel.players.home.name}} <i class="fa fa-lg  {{gameModel.players.home.marker}}" [ngClass]="{ 'text-danger': gameModel.players.isHomeHasTurnToPlay }" ></i> <b>-</b> {{gameModel.players.home.score}}
         </span>    
         <span class="">
             Draw <b>-</b> {{noWinner}}
         </span>
         <span class="pull-right">
-            {{gameModel.players.guest.name}} <i class="fa fa-lg {{gameModel.players.isHomeMarkerX ? marker.o : marker.x}}" [ngClass]="{ 'text-danger': !gameModel.players.isHomeHasTurnToPlay }" ></i> <b>-</b> {{gameModel.players.guest.score}}
+            {{gameModel.players.guest.name}} <i class="fa fa-lg {{gameModel.players.guest.marker}}" [ngClass]="{ 'text-danger': !gameModel.players.isHomeHasTurnToPlay }" ></i> <b>-</b> {{gameModel.players.guest.score}}
         </span>
     </nav>
 </div>
