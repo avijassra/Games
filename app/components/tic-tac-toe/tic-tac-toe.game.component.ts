@@ -32,7 +32,6 @@ export class TicTacToeGameComponent implements OnInit {
 
     constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
         this.screenId = sessionStorage.getItem("screenId");
-        this.marker = JSON.parse(sessionStorage.getItem("marker"));
 
         if(this.gameModel != null) {
             this.ticTacToeSrvc = factorySrvc.resolve(this.gameModel.gameType);
@@ -45,8 +44,8 @@ export class TicTacToeGameComponent implements OnInit {
         }
     }
 
-    get getActivePlayerName() {
-        return (this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.home.name : this.gameModel.players.guest.name);
+    get getActivePlayer() {
+        return (this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.home : this.gameModel.players.guest);
     }
 
     ngOnInit(): void {
@@ -77,12 +76,12 @@ export class TicTacToeGameComponent implements OnInit {
     ticOrTac(row:number, col:number): void {
         if(this.gameModel.isGameOn && this.gameModel.grid[row][col].marker === null) {
             this.screenBlocker = true;
-            var getMarker = (this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.isHomeMarkerX : !this.gameModel.players.isHomeMarkerX);
-            this.ticTacToeSrvc.onSend(row, col, getMarker);
+            var currMarker = (this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.home.marker : this.gameModel.players.guest.marker);
+            this.ticTacToeSrvc.onSend(row, col, currMarker);
         }
     }
 
-    checkForWinningSequence(row:number, col:number, markedVal: boolean): boolean {
+    checkForWinningSequence(row:number, col:number, markedVal: string): boolean {
         // checking the row for winning sequence
         if(!_.some(this.gameModel.grid, (rowItem) => rowItem[col].marker !== markedVal )) {
             _.forEach(this.gameModel.grid, (rowItem) => rowItem[col].isWinningSequence = true );
@@ -111,9 +110,9 @@ export class TicTacToeGameComponent implements OnInit {
 
     onMessageReceived(markerModel: TicTacToeMarkerModel) {
         this.gameModel.noOfCellsMarkedInGame += 1;
-        this.gameModel.grid[markerModel.row][markerModel.col].marker = markerModel.isMarkerX;
+        this.gameModel.grid[markerModel.row][markerModel.col].marker = markerModel.marker;
         
-        if(this.checkForWinningSequence(markerModel.row, markerModel.col, markerModel.isMarkerX)) {
+        if(this.checkForWinningSequence(markerModel.row, markerModel.col, markerModel.marker)) {
             this.gameModel.totalGamesPlayed += 1;
             this.gameModel.players.home.score += (this.gameModel.players.isHomeHasTurnToPlay ? 1 : 0);
             this.gameModel.players.guest.score  += (this.gameModel.players.isHomeHasTurnToPlay ? 0 : 1);

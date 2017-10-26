@@ -18,10 +18,10 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     startNewGame(gameModel: TicTacToeGameModel): void {
         this.gameStarted.emit();
     }
-    onSend(row:number, col:number, isMarkerX: boolean): void {
+    onSend(row:number, col:number, marker: string): void {
         throw new Error("Method not implemented.");
     }
-    onReceive(row:number, col:number, isMarkerX: boolean): void {
+    onReceive(row:number, col:number, marker: string): void {
         throw new Error("Method not implemented.");
     }
 }

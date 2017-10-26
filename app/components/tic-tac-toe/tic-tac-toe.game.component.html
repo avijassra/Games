@@ -4,15 +4,14 @@
             <table class="text-center {{winningClass}}">
                 <tr *ngFor="let row of gameModel.grid; let r = index" >
                     <td *ngFor="let col of row; let c = index" (click)="ticOrTac(r, c)">
-                        <!-- <i class="fa {{ (gameModel.grid[r][c].marker === true ? marker.x : (gameModel.grid[r][c].marker === false ? marker.o : '')) }}" [ngClass]="{ 'text-success blink': gameModel.grid[r][c].isWinningSequence }" ></i> -->
-                        <i class="fa {{ (gameModel.grid[r][c].marker === true ? marker.x : (gameModel.grid[r][c].marker === false ? marker.o : '')) }}" [ngClass]="{ 'text-success blink': gameModel.grid[r][c].isWinningSequence }"></i>
+                        <i class="fa {{gameModel.grid[r][c].marker}}" [ngClass]="{ 'text-success blink': gameModel.grid[r][c].isWinningSequence }"></i>
                     </td>
                 </tr>
             </table>
             <div class="game-viewport-overlay" [ngClass]="{ 'hide': !screenBlocker }" >
                 <div class="row text-center" [ngClass]="{ 'hide': (!gameModel.isGameOn && gameModel.noOfCellsMarkedInGame === 0) }">
                     <div class="col-xs-12 center">
-                        {{getActivePlayerName}}
+                        {{getActivePlayer.name}}
                         <br>
                         <button class="btn btn-primary circle top30" [ngClass]="{ 'hide': !reqForTurn }" (click)="reqForTurnAxn()" >Go</button>
                     </div>

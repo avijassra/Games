@@ -27,18 +27,16 @@ export class TicTacToeGameModel {
 
 export class TicTacToeGamePlayersModel {
     public isHomeHasTurnToPlay: boolean;
-    public isHomeMarkerX: boolean;
     public home: TicTacToePlayerModel;
     public guest: TicTacToePlayerModel;
 
-    addHomePlayer(screenId:string, name: string, isMarkerX: boolean, id?: string) {
-        this.home = new TicTacToePlayerModel(screenId, (name || 'Player 1'), id);
+    addHomePlayer(screenId:string, name: string, marker: string, id?: string) {
+        this.home = new TicTacToePlayerModel(screenId, (name || 'Player 1'), marker, id);
         this.isHomeHasTurnToPlay = true;
-        this.isHomeMarkerX = isMarkerX;
     }
 
-    addGuestPlayer(screenId:string, name: string, id?: string) {
-        this.guest = new TicTacToePlayerModel(screenId, (name || 'Player 2'), id);
+    addGuestPlayer(screenId:string, name: string, marker: string, id?: string) {
+        this.guest = new TicTacToePlayerModel(screenId, (name || 'Player 2'), marker, id);
     }
 
     getPlayerWithTurn() : TicTacToePlayerModel {
@@ -49,7 +47,7 @@ export class TicTacToeGamePlayersModel {
 export class TicTacToePlayerModel {
     public score: number;
 
-    constructor(public screenId: string, public name: string, public id?: string) {
+    constructor(public screenId: string, public name: string, public marker: string, public id?: string) {
         if(id == null) {
             this.id = AppService.newGuid();
         }
@@ -58,7 +56,7 @@ export class TicTacToePlayerModel {
 }
 
 export class TicTacToeModel {
-    public marker?: boolean;
+    public marker: string;
     public isWinningSequence: boolean;
 
     constructor() {
@@ -68,5 +66,5 @@ export class TicTacToeModel {
 }
 
 export class TicTacToeMarkerModel {
-    constructor(public row: number, public col: number, public isMarkerX: boolean){};
+    constructor(public row: number, public col: number, public marker: string){};
 }

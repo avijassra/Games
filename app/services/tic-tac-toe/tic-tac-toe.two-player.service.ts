@@ -17,12 +17,12 @@ export class TicTacToeTwoPlayerService implements ITicTacToeService {
         this.gameStarted.emit();
     }
 
-    onSend(row:number, col:number, isMarkerX: boolean): void {
-        this.onReceive(row, col, isMarkerX);
+    onSend(row:number, col:number, marker: string): void {
+        this.onReceive(row, col, marker);
     }
 
-    onReceive(row:number, col:number, isMarkerX: boolean): void {
-        this.messageReceived.emit(new TicTacToeMarkerModel(row, col, isMarkerX));
+    onReceive(row:number, col:number, marker: string): void {
+        this.messageReceived.emit(new TicTacToeMarkerModel(row, col, marker));
         this.changeActivePlayer.emit();
     }
 }

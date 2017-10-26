@@ -35,7 +35,6 @@ export class TicTacToeComponent implements OnInit {
     constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
         this.screenId = AppService.newGuid();
         sessionStorage.setItem("screenId", this.screenId);
-        sessionStorage.setItem("marker", JSON.stringify(this.marker));
         this.gameModel.id = AppService.newGuid();
         this.selectedGameType = 0;
         this.gridSize = 3;
@@ -62,7 +61,7 @@ export class TicTacToeComponent implements OnInit {
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
         this.gameModel.gridSize = this.gridSize;
         this.gameModel.gameType = this.selectedGameType;
-        this.gameModel.players.addHomePlayer(this.screenId, this.p1Name, this.isMarkerX);
+        this.gameModel.players.addHomePlayer(this.screenId, this.p1Name, (this.isMarkerX ? this.marker.x : this.marker.o));
         this.ticTacToeSrvc.startNewGame(this.gameModel);
     }
 
@@ -77,7 +76,7 @@ export class TicTacToeComponent implements OnInit {
             name = player.name
         }
 
-        this.gameModel.players.addGuestPlayer(sId, name, pId);
+        this.gameModel.players.addGuestPlayer(sId, name, (this.isMarkerX ? this.marker.o : this.marker.x), pId);
         this.router.navigate(['/tic-tac-toe', this.gameModel.id]);
     }
 
