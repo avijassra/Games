@@ -8,6 +8,6 @@ export interface ITicTacToeService {
     swapMarkers: EventEmitter<null>;
 
     startNewGame(gameMode: TicTacToeGameModel): void;
-    onSend(row:number, col:number, marker: string): void;
-    onReceive(row:number, col:number, marker: string): void;
+    onSend(markerModel: TicTacToeMarkerModel): void;
+    onReceive(markerModel: TicTacToeMarkerModel): void;
 }

@@ -77,7 +77,7 @@ export class TicTacToeGameComponent implements OnInit {
         if(this.gameModel.isGameOn && this.gameModel.grid[row][col].marker === null) {
             this.screenBlocker = true;
             var currMarker = (this.gameModel.players.isHomeHasTurnToPlay ? this.gameModel.players.home.marker : this.gameModel.players.guest.marker);
-            this.ticTacToeSrvc.onSend(row, col, currMarker);
+            this.ticTacToeSrvc.onSend(new TicTacToeMarkerModel(row, col, currMarker));
         }
     }
 

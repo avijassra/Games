@@ -12,16 +12,29 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();
 
+    connection: HubConnection;
+    startedConnection: Promise<void>;
+
     constructor() {
+        this.connection = new HubConnection('/tictactoe');
+        this.startedConnection = this.connection.start();
+
+        this.connection.on('send', (markerModel: TicTacToeMarkerModel) => {
+            this.onReceive(markerModel);
+        });
     }
 
     startNewGame(gameModel: TicTacToeGameModel): void {
-        this.gameStarted.emit();
+        //this.tic
     }
-    onSend(row:number, col:number, marker: string): void {
-        throw new Error("Method not implemented.");
+
+
+    onSend(markerModel: TicTacToeMarkerModel): void {
+        this.startedConnection
+            .then(() => this.connection.invoke('send', markerModel));
     }
-    onReceive(row:number, col:number, marker: string): void {
-        throw new Error("Method not implemented.");
+    
+    onReceive(markerModel: TicTacToeMarkerModel): void {
+        this.messageReceived.emit(markerModel);
     }
 }

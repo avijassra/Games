@@ -27,7 +27,8 @@
                     <div class="col-sm-5">
                         <div class="input-group">
                             <input class="form-control" [(ngModel)]="p2Name" placeholder="Player 2" [ngClass]="{'hide': selectedGameType !== 1 }">
-                            <input class="form-control" [(ngModel)]="gName" placeholder="{{p1Name}}-" [ngClass]="{'hide': selectedGameType !== 2 }">
+                            <input class="form-control" [(ngModel)]="gName" placeholder="{{p1Name}}-" [ngClass]="{'hide': selectedGameType !== 2 && reqInProgress }">
+                            <span class="text-danger text-center" [ngClass]="{'hide': !reqInProgress }">Waiting...</span>
                             <span class="input-group-addon">
                                 <i class="fa fa-lg" [ngClass]="getGuestPlayerMarker()" ></i>
                             </span>

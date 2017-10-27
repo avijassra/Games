@@ -24,6 +24,7 @@ export class TicTacToeComponent implements OnInit {
     p2Name: string;
     winningPlayer: string;
     playerModel: TicTacToePlayerModel = null;
+    reqInProgress: boolean;
     marker: any = {
         x: 'fa-check-circle',
         o: 'fa-times-circle-o'
@@ -57,12 +58,14 @@ export class TicTacToeComponent implements OnInit {
     }
 
     startTheGame(): void {
+        debugger;
         this.reqToStartGame = true;
         this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
         this.gameModel.gridSize = this.gridSize;
         this.gameModel.gameType = this.selectedGameType;
         this.gameModel.name = this.gName || (`${this.p1Name}-`);
+        this.reqInProgress = true;
         this.gameModel.players.addHomePlayer(this.screenId, this.p1Name, (this.isMarkerX ? this.marker.x : this.marker.o));
         this.ticTacToeSrvc.startNewGame(this.gameModel);
     }
