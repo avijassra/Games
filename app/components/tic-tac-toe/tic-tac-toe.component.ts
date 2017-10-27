@@ -19,6 +19,7 @@ export class TicTacToeComponent implements OnInit {
     ticTacToeSrvc: ITicTacToeService = null;
     gameOptions:object;
     selectedGameType: number;
+    gName: string;
     p1Name: string;
     p2Name: string;
     winningPlayer: string;
@@ -61,6 +62,7 @@ export class TicTacToeComponent implements OnInit {
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
         this.gameModel.gridSize = this.gridSize;
         this.gameModel.gameType = this.selectedGameType;
+        this.gameModel.name = this.gName || (`${this.p1Name}-`);
         this.gameModel.players.addHomePlayer(this.screenId, this.p1Name, (this.isMarkerX ? this.marker.x : this.marker.o));
         this.ticTacToeSrvc.startNewGame(this.gameModel);
     }
