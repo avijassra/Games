@@ -11,7 +11,6 @@ namespace Games.Models {
         
         public string Marker { get; set; }
         
-        
         public int Score { get; set; }
     }
 }

@@ -13,7 +13,7 @@ export class TicTacToeTwoPlayerService implements ITicTacToeService {
     constructor() {
     }
 
-    startNewGame(gameModel: TicTacToeGameModel): void {
+    startNewGame(gameModel: TicTacToeGameModel, marker: string): void {
         this.gameStarted.emit();
     }
 

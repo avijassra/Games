@@ -9,6 +9,10 @@ import { GameType } from '../../models/enums'
 import { ITicTacToeService } from '../../services/tic-tac-toe/i.tic-tac-toe.service';
 import { TicTacToeFactoryService } from '../../services/tic-tac-toe/tic.-tac-toe.factory.service';
 
+
+import { TicTacToeRemoteService } from '../../services/tic-tac-toe/tic-tac-toe.remote.service';
+
+
 @Component({
     moduleId: module.id,
     selector: 'tic-tac-toe',
@@ -34,6 +38,11 @@ export class TicTacToeComponent implements OnInit {
     reqToStartGame = false;
     gridSize = 3;
 
+
+    msgs: string[];
+    chatMsg: string;
+    chatBox: TicTacToeRemoteService;
+
     constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
         this.screenId = AppService.newGuid();
         sessionStorage.setItem("screenId", this.screenId);
@@ -47,6 +56,10 @@ export class TicTacToeComponent implements OnInit {
             {id: 2, desc: 'Remote'},
             //{id: 3, desc: 'Computer'},
         ];
+
+        this.chatBox = new TicTacToeRemoteService();
+        this.chatBox.chatMessageGet.subscribe((msg: string)=> this.getMsg(msg))
+        this.msgs = [];
     }
 
     ngOnInit(): void {
@@ -58,16 +71,15 @@ export class TicTacToeComponent implements OnInit {
     }
 
     startTheGame(): void {
-        debugger;
         this.reqToStartGame = true;
-        this.ticTacToeSrvc = this.factorySrvc.resolve(GameType.TwoPlayer);
+        this.ticTacToeSrvc = this.factorySrvc.resolve(this.selectedGameType);
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
         this.gameModel.gridSize = this.gridSize;
         this.gameModel.gameType = this.selectedGameType;
         this.gameModel.name = this.gName || (`${this.p1Name}-`);
         this.reqInProgress = true;
         this.gameModel.players.addHomePlayer(this.screenId, this.p1Name, (this.isMarkerX ? this.marker.x : this.marker.o));
-        this.ticTacToeSrvc.startNewGame(this.gameModel);
+        this.ticTacToeSrvc.startNewGame(this.gameModel, (this.isMarkerX ? this.marker.o : this.marker.x));
     }
 
     onGameStarted(player: TicTacToePlayerModel) {
@@ -91,5 +103,14 @@ export class TicTacToeComponent implements OnInit {
 
     getGuestPlayerMarker() {
         return (this.isMarkerX ? this.marker.o : this.marker.x );
+    }
+
+    sendMsg(): void {
+        this.chatBox.onChatMessageSend(this.chatMsg);
+        this.chatMsg = "";
+    }
+
+    getMsg(msg: string): void {
+        this.msgs.push(msg);
     }
 }

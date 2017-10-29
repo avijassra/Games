@@ -6,10 +6,15 @@ namespace Games.Hubs
 
     public class TicTacToeHub : Hub
     {
-        
         public Task Send(string message)
         {
-            return Clients.All.InvokeAsync("Send", message);
+            return Clients.All.InvokeAsync("receive", message);
+        }
+
+        public Task NotifyForNewGame(Guid gId)//, string gName, string pMarker)
+        {
+            //return Clients.All.InvokeAsync("WaitingForGames", new { id = gId, name = gName, marker = pMarker });
+            return Clients.All.InvokeAsync("WaitingForGames", "Message Recieved");
         }
     }
 }
