@@ -11,6 +11,10 @@ namespace Games.Hubs
             return Clients.All.InvokeAsync("receive", message);
         }
 
+        public Task RegisterNewGame(Guid id) {
+            return Clients.All.InvokeAsync("DisplayWaitingPlayer", $"Game - {id}");
+        }
+
         public Task NotifyForNewGame(Guid gId)//, string gName, string pMarker)
         {
             //return Clients.All.InvokeAsync("WaitingForGames", new { id = gId, name = gName, marker = pMarker });

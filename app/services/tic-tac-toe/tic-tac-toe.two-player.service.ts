@@ -6,6 +6,7 @@ import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '
 @Injectable()
 export class TicTacToeTwoPlayerService implements ITicTacToeService {
     gameStarted: EventEmitter<TicTacToePlayerModel> = new EventEmitter();
+    displayWaitingPlayers: EventEmitter<string> = new EventEmitter();
     messageReceived: EventEmitter<TicTacToeMarkerModel> = new EventEmitter();
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();

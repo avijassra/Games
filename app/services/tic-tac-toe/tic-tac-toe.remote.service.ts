@@ -9,6 +9,7 @@ import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '
 export class TicTacToeRemoteService implements ITicTacToeService {
     gameStarted: EventEmitter<TicTacToePlayerModel> = new EventEmitter();
     messageReceived: EventEmitter<TicTacToeMarkerModel> = new EventEmitter();
+    displayWaitingPlayers: EventEmitter<string> = new EventEmitter();
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();
     chatMessageGet: EventEmitter<string> = new EventEmitter();
@@ -21,8 +22,8 @@ export class TicTacToeRemoteService implements ITicTacToeService {
         this.connection = new HubConnection('/tictactoe');
         this.startedConnection = this.connection.start();
 
-        this.connection.on('WaitingGames', (markerModel: TicTacToeMarkerModel) => {
-            this.onReceive(markerModel);
+        this.connection.on('DisplayWaitingPlayer', (gId: string) => {
+            this.onDisplayWaitingPlayer(gId);
         });
 
         this.connection.on('receive', (msg: string) => {
@@ -32,15 +33,21 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     }
 
     startNewGame(gameModel: TicTacToeGameModel, marker: string): void {
+        debugger;
         this.startedConnection
-            .then(() => this.connection.invoke('NotifyForNewGame', gameModel.id));//, gameModel.name, marker));
+            .then(() => this.connection.invoke('RegisterNewGame', gameModel.id));//, gameModel.name, marker));
     }
 
     onSend(markerModel: TicTacToeMarkerModel): void {
+        debugger;
         this.startedConnection
             .then(() => this.connection.invoke('NotifyForNewGame', markerModel));
     }
     
+    onDisplayWaitingPlayer(game: string): void {
+        this.displayWaitingPlayers.emit(game);
+    }
+
     onReceive(markerModel: TicTacToeMarkerModel): void {
         this.messageReceived.emit(markerModel);
     }

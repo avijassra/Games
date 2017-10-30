@@ -3,6 +3,7 @@ import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '
 
 export interface ITicTacToeService {
     gameStarted: EventEmitter<TicTacToePlayerModel>;
+    displayWaitingPlayers: EventEmitter<string>;
     messageReceived: EventEmitter<TicTacToeMarkerModel>;
     changeActivePlayer: EventEmitter<null>;
     swapMarkers: EventEmitter<null>;

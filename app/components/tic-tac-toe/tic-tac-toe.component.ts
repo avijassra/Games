@@ -74,6 +74,7 @@ export class TicTacToeComponent implements OnInit {
         this.reqToStartGame = true;
         this.ticTacToeSrvc = this.factorySrvc.resolve(this.selectedGameType);
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
+        this.ticTacToeSrvc.displayWaitingPlayers.subscribe((game: string) => this.onDisplayWaitingPlayers(game));
         this.gameModel.gridSize = this.gridSize;
         this.gameModel.gameType = this.selectedGameType;
         this.gameModel.name = this.gName || (`${this.p1Name}-`);
@@ -103,6 +104,10 @@ export class TicTacToeComponent implements OnInit {
 
     getGuestPlayerMarker() {
         return (this.isMarkerX ? this.marker.o : this.marker.x );
+    }
+
+    onDisplayWaitingPlayers(game: string): void {
+        alert(game)
     }
 
     sendMsg(): void {
