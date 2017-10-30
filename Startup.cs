@@ -54,6 +54,7 @@ namespace Games
             app.UseSignalR(routes =>
             {
                 routes.MapHub<Games.Hubs.TicTacToeHub>("tictactoe");
+                routes.MapHub<Games.Hubs.GamesHub>("games");
             });
         }
     }

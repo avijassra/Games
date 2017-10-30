@@ -14,6 +14,7 @@ import { Puzzle2048Component } from './components/2048/2048.component';
 // Model
 import { TicTacToeGameModel } from './models/tic-tac-toe.model';
 //Service
+import { PubSubService } from './services/pubsub.service'
 import { ITicTacToeService } from './services/tic-tac-toe/i.tic-tac-toe.service';
 import { TicTacToeFactoryService } from './services/tic-tac-toe/tic.-tac-toe.factory.service';
 import { TicTacToeTwoPlayerService } from './services/tic-tac-toe/tic-tac-toe.two-player.service';
@@ -47,6 +48,7 @@ const routes: Routes = [
         Puzzle2048Component
     ],
     providers: [
+        PubSubService,
         TicTacToeGameModel,
         TicTacToeFactoryService
     ],

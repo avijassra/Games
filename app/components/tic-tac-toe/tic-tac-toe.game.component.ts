@@ -35,7 +35,7 @@ export class TicTacToeGameComponent implements OnInit {
 
         if(this.gameModel != null) {
             this.ticTacToeSrvc = factorySrvc.resolve(this.gameModel.gameType);
-            this.ticTacToeSrvc.messageReceived.subscribe((markerModel: TicTacToeMarkerModel) => this.onMessageReceived(markerModel));
+            this.ticTacToeSrvc.updateGameBoard.subscribe((markerModel: TicTacToeMarkerModel) => this.onUpdateGameBoard(markerModel));
             this.ticTacToeSrvc.changeActivePlayer.subscribe(() => this.onChangeActivePlayer());
             
             this.resetGrid();
@@ -108,7 +108,7 @@ export class TicTacToeGameComponent implements OnInit {
         return false;
     }
 
-    onMessageReceived(markerModel: TicTacToeMarkerModel) {
+    onUpdateGameBoard(markerModel: TicTacToeMarkerModel) {
         this.gameModel.noOfCellsMarkedInGame += 1;
         this.gameModel.grid[markerModel.row][markerModel.col].marker = markerModel.marker;
         
