@@ -17,12 +17,10 @@ import { PubSubService } from '../../services/pubsub.service';
 })
 export class TicTacToeComponent implements OnInit {
     screenId: string;
+    dateId: string;
     ticTacToeSrvc: ITicTacToeService = null;
     gameOptions:object;
     selectedGameType: number;
-    gName: string;
-    p1Name: string;
-    p2Name: string;
     winningPlayer: string;
     playerModel: TicTacToePlayerModel = null;
     reqInProgress: boolean;
@@ -30,16 +28,23 @@ export class TicTacToeComponent implements OnInit {
         x: 'fa-check-circle',
         o: 'fa-times-circle-o'
     };
-
     isMarkerX = true;
     reqToStartGame = false;
     gridSize = 3;
+
+    gNameVal: string;
+    gNameUiVal: string;
+    p1NameVal: string;
+    p1NameUiVal: string;
+    p2NameVal: string;
+    p2NameUiVal: string;
 
     msgs: string[];
     chatMsg: string;
     
     constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel, private pubSubSrvc: PubSubService) {
         this.screenId = AppService.newGuid();
+        this.dateId = AppService.dateUid();
         sessionStorage.setItem("screenId", this.screenId);
         this.gameModel.id = AppService.newGuid();
         this.selectedGameType = 0;
@@ -61,6 +66,54 @@ export class TicTacToeComponent implements OnInit {
         //throw new Error("Method not implemented.");
     }
 
+    get gName() {
+        return (this.gNameVal || `${this.dateId}-${this.p1Name}`);
+    }
+
+    set gName(val: string) {
+        this.gNameVal = val;
+    }
+
+    get gNameUi() {
+        return this.gNameUiVal;
+    }
+
+    set gNameUi(val: string) {
+        this.gNameUiVal = this.gNameVal = val;
+    }
+
+    get p1Name() {
+        return (this.p1NameVal || 'Home Player');
+    }
+
+    set p1Name(val: string) {
+        this.p1NameVal = val;
+    }
+
+    get p1NameUi() {
+        return this.p1NameUiVal;
+    }
+
+    set p1NameUi(val: string) {
+        this.p1NameUiVal = this.p1NameVal  = val;
+    }
+
+    get p2Name() {
+        return (this.p2NameVal || 'Guest Player');
+    }
+
+    set p2Name(val: string) {
+        this.p2NameVal = val;
+    }
+
+    get p2NameUi() {
+        return this.p2NameUiVal
+    }
+
+    set p2NameUi(val: string) {
+        this.p2NameUiVal = this.p2NameVal = val;
+    }
+
     changeTheMarker(): void {
         this.isMarkerX = !this.isMarkerX;
     }
@@ -71,7 +124,7 @@ export class TicTacToeComponent implements OnInit {
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
         this.gameModel.gridSize = this.gridSize;
         this.gameModel.gameType = this.selectedGameType;
-        this.gameModel.name = this.gName || (`${this.p1Name}-`);
+        this.gameModel.name = this.gNameVal;
         this.reqInProgress = true;
         this.gameModel.players.addHomePlayer(this.screenId, this.p1Name, (this.isMarkerX ? this.marker.x : this.marker.o));
         this.ticTacToeSrvc.startNewGame(this.gameModel, (this.isMarkerX ? this.marker.o : this.marker.x));

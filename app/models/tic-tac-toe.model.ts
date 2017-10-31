@@ -31,12 +31,12 @@ export class TicTacToeGamePlayersModel {
     public guest: TicTacToePlayerModel;
 
     addHomePlayer(screenId:string, name: string, marker: string, id?: string) {
-        this.home = new TicTacToePlayerModel(screenId, (name || 'Player 1'), marker, id);
+        this.home = new TicTacToePlayerModel(screenId, name, marker, id);
         this.isHomeHasTurnToPlay = true;
     }
 
     addGuestPlayer(screenId:string, name: string, marker: string, id?: string) {
-        this.guest = new TicTacToePlayerModel(screenId, (name || 'Player 2'), marker, id);
+        this.guest = new TicTacToePlayerModel(screenId, name, marker, id);
     }
 
     getPlayerWithTurn() : TicTacToePlayerModel {

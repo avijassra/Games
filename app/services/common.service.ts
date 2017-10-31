@@ -8,9 +8,24 @@ export class AppService {
 
     static dateUid(): string {
       var dt = new Date(),
-        dtNow = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60000);;
-      return `${dtNow.getFullYear()}${dtNow.getDate()}${dtNow.getDay()}_${dtNow.getHours()}${dtNow.getMinutes()}${dtNow.getSeconds()}`
+        dtNow = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60000),
+        year = dtNow.getFullYear(),
+        month = this.numToStrWithDigits(dtNow.getMonth(), 2),
+        day = this.numToStrWithDigits(dtNow.getDay(), 2),
+        hr = this.numToStrWithDigits(dtNow.getHours(), 2),
+        min = this.numToStrWithDigits(dtNow.getMinutes(), 2),
+        sec = this.numToStrWithDigits(dtNow.getSeconds(), 2);
+
+      return `${year}${month}${day}_${hr}${min}${sec}`
     }
 
-    //timeOut()
+    private static numToStrWithDigits(num: number, digits: number): string {
+      var numStr = num.toString();
+
+      while(numStr.length < digits) {
+        numStr = `0${numStr}`;
+      }
+
+      return numStr;
+    }
 }

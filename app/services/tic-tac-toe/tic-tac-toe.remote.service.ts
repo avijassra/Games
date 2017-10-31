@@ -13,18 +13,13 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     swapMarkers: EventEmitter<null> = new EventEmitter();
 
     constructor(private pubSubSrvc: PubSubService) {
-        debugger;
-        var a = 1;
-
     }
 
     startNewGame(gameModel: TicTacToeGameModel, marker: string): void {
-        debugger;
         this.pubSubSrvc.onRegisterNewGame(gameModel.id);
     }
 
     onSend(markerModel: TicTacToeMarkerModel): void {
-
     }
 
     onReceive(markerModel: TicTacToeMarkerModel): void {
