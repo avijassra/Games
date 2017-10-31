@@ -8,10 +8,7 @@ import { AppService } from '../../services/common.service';
 import { GameType } from '../../models/enums'
 import { ITicTacToeService } from '../../services/tic-tac-toe/i.tic-tac-toe.service';
 import { TicTacToeFactoryService } from '../../services/tic-tac-toe/tic.-tac-toe.factory.service';
-
-
-import { TicTacToeRemoteService } from '../../services/tic-tac-toe/tic-tac-toe.remote.service';
-
+import { PubSubService } from '../../services/pubsub.service';
 
 @Component({
     moduleId: module.id,
@@ -38,12 +35,10 @@ export class TicTacToeComponent implements OnInit {
     reqToStartGame = false;
     gridSize = 3;
 
-
     msgs: string[];
     chatMsg: string;
-    chatBox: TicTacToeRemoteService;
-
-    constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel) {
+    
+    constructor(private router: Router, private factorySrvc: TicTacToeFactoryService, private gameModel: TicTacToeGameModel, private pubSubSrvc: PubSubService) {
         this.screenId = AppService.newGuid();
         sessionStorage.setItem("screenId", this.screenId);
         this.gameModel.id = AppService.newGuid();
@@ -57,8 +52,8 @@ export class TicTacToeComponent implements OnInit {
             //{id: 3, desc: 'Computer'},
         ];
 
-        this.chatBox = new TicTacToeRemoteService();
-        this.chatBox.chatMessageGet.subscribe((msg: string)=> this.getMsg(msg))
+        this.pubSubSrvc.incomingMessage.subscribe((msg: string)=> this.getMsg(msg))
+        this.pubSubSrvc.gameWaitingForPlayers.subscribe((game: string) => this.onDisplayWaitingPlayers(game));
         this.msgs = [];
     }
 
@@ -74,7 +69,6 @@ export class TicTacToeComponent implements OnInit {
         this.reqToStartGame = true;
         this.ticTacToeSrvc = this.factorySrvc.resolve(this.selectedGameType);
         this.ticTacToeSrvc.gameStarted.subscribe((player: TicTacToePlayerModel) => this.onGameStarted(player));
-        this.ticTacToeSrvc.displayWaitingPlayers.subscribe((game: string) => this.onDisplayWaitingPlayers(game));
         this.gameModel.gridSize = this.gridSize;
         this.gameModel.gameType = this.selectedGameType;
         this.gameModel.name = this.gName || (`${this.p1Name}-`);
@@ -111,7 +105,7 @@ export class TicTacToeComponent implements OnInit {
     }
 
     sendMsg(): void {
-        this.chatBox.onChatMessageSend(this.chatMsg);
+        this.pubSubSrvc.onOutgoingMessage(this.chatMsg);
         this.chatMsg = "";
     }
 

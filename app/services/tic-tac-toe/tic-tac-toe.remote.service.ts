@@ -3,7 +3,7 @@ import { HubConnection } from '@aspnet/signalr-client';
 
 import { ITicTacToeService } from '../tic-tac-toe/i.tic-tac-toe.service';
 import { TicTacToeGameModel, TicTacToePlayerModel, TicTacToeMarkerModel } from '../../models/tic-tac-toe.model';
-
+import { PubSubService } from '../pubsub.service';
 
 @Injectable()
 export class TicTacToeRemoteService implements ITicTacToeService {
@@ -12,10 +12,15 @@ export class TicTacToeRemoteService implements ITicTacToeService {
     changeActivePlayer: EventEmitter<null> = new EventEmitter();
     swapMarkers: EventEmitter<null> = new EventEmitter();
 
-    constructor() {
+    constructor(private pubSubSrvc: PubSubService) {
+        debugger;
+        var a = 1;
+
     }
 
     startNewGame(gameModel: TicTacToeGameModel, marker: string): void {
+        debugger;
+        this.pubSubSrvc.onRegisterNewGame(gameModel.id);
     }
 
     onSend(markerModel: TicTacToeMarkerModel): void {
