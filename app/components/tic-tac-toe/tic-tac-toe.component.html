@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div> -->
-        <div [ngClass]="{ 'hide': (ticTacToeSrvc != null)}">
+        <div [ngClass]="{ 'hide': reqToStartGame}">
             <div class="row top15"></div>
             <div class="row text-center">
                 <div class="col-sm-4" ></div>
@@ -67,15 +67,45 @@
                 <div class="row top15"></div>
                 <div class="row">
                     <div class="col-sm-12 text-center" >
-                        <button class="btn btn-default" (click)="startTheGame()" [ngClass]="{ 'hide': reqToStartGame }">
+                        <button class="btn btn-default" (click)="startTheGame()">
                             <span>Play</span>
                             <i class="fa fa-lg fa-play text-primary" ></i>
                         </button>
-                        <span [ngClass]="{ 'hide': !reqToStartGame }">
-                            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                            <span class="sr-only">Waiting...</span>
-                        </span>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="{ 'hide': !reqToStartGame}">
+            <div class="row" >
+                <div class="col-sm-6">
+                    <span class="pull-right">Game Name:</span>
+                </div>
+                <div class="col-sm-6 pull-left">
+                    {{gName}}
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-sm-6">
+                    <span class="pull-right">Player 1 Name:</span>
+                </div>
+                <div class="col-sm-6 pull-left">
+                    {{p1Name}}
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-sm-6">
+                    <span class="pull-right">Player 2 Name:</span>
+                </div>
+                <div class="col-sm-6 pull-left">
+                    {{p2Name}}
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-sm-6">
+                    <span class="pull-right">Status:</span>
+                </div>
+                <div class="col-sm-6 pull-left blink">
+                    Waiting ...
                 </div>
             </div>
         </div>
