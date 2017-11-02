@@ -27,6 +27,8 @@ namespace Games
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<Models.AppCache>();
+
             // Add framework services.
             services.AddMvc();
             services.AddSignalR();
@@ -51,6 +53,9 @@ namespace Games
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();
+
+            //https://docs.microsoft.com/en-us/aspnet/signalr/overview/advanced/dependency-injection
+
             app.UseSignalR(routes =>
             {
                 routes.MapHub<Games.Hubs.TicTacToeHub>("tictactoe");
