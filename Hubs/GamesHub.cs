@@ -3,16 +3,20 @@ namespace Games.Hubs
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR;
+    using Microsoft.Extensions.DependencyInjection;
 
     using Models;
 
+    //[HubName("games")]
     public class GamesHub : Hub
     {
-        private AppCache Cache { get; set; }
+        private AppCache _cache;
 
-        public GamesHub(AppCache appCache) {
-
-        }
+        //https://stackoverflow.com/questions/32459670/resolving-instances-with-asp-net-core-di
+        //https://github.com/aspnet/SignalR/issues/68
+        // public GamesHub(AppCache appCache) {
+        //     this._cache = appCache;
+        // }
 
         public Task MessageToPublish(string message)
         {
@@ -20,15 +24,10 @@ namespace Games.Hubs
         }
 
         public Task RegisterNewGame(Guid id) {
-            Cache.Games.Add(new GamesModel(id));
-            return Clients.All.InvokeAsync("GamesWaitingPlayers", $"Game - {id} | {Cache.Games.Count}");
+            //this._cache.Games.Add(new GamesModel(id));
+            //return Clients.All.InvokeAsync("GamesWaitingPlayers", $"Game - {id} | {this._cache.Games.Count}");
+            return Clients.All.InvokeAsync("GamesWaitingPlayers", $"Game - {id}");
         }
-
-        // public Task NotifyForNewGame(Guid gId)//, string gName, string pMarker)
-        // {
-        //     //return Clients.All.InvokeAsync("WaitingForGames", new { id = gId, name = gName, marker = pMarker });
-        //     return Clients.All.InvokeAsync("WaitingForGames", "Message Recieved");
-        // }
     }
 }
 

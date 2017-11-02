@@ -68,9 +68,15 @@ namespace Games
             //https://radu-matei.com/blog/aspnet-core-mvc-signalr/
             //https://docs.microsoft.com/en-us/aspnet/signalr/overview/advanced/dependency-injection
 
+            // app.UseSignalR(routes =>
+            // {
+            //     routes.MapHub<Games.Hubs.TicTacToeHub>("tictactoe");
+            //     routes.MapHub<Games.Hubs.GamesHub>("games");
+            // });
+            app.UseWebSockets();
             app.UseSignalR(routes =>
             {
-                routes.MapHub<Games.Hubs.TicTacToeHub>("tictactoe");
+                //routes.MapHub<Games.Hubs.TicTacToeHub>("tictactoe");
                 routes.MapHub<Games.Hubs.GamesHub>("games");
             });
         }

@@ -3,7 +3,6 @@ namespace Games
     using System;
     using System.Reflection;
     using Newtonsoft.Json.Serialization;
-    using Microsoft.AspNetCore.SignalR.Internal;
 
     public class SignalRContractResolver : IContractResolver
     {
@@ -15,7 +14,7 @@ namespace Games
         {
             _defaultContractSerializer = new DefaultContractResolver();
             _camelCaseContractResolver = new CamelCasePropertyNamesContractResolver();
-            _assembly = typeof(Connection).GetTypeInfo().Assembly;
+            _assembly = typeof(Microsoft.AspNetCore.SignalR.HubConnectionContext).GetTypeInfo().Assembly;
         }
 
 
