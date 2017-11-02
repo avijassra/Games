@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Games
 {
@@ -27,6 +29,14 @@ namespace Games
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var settings = new JsonSerializerSettings();
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            var serializer = JsonSerializer.Create(settings);
+            services.Add(new ServiceDescriptor(typeof(JsonSerializer), 
+                        provider => serializer, 
+                        ServiceLifetime.Transient));
+                        
             services.AddSingleton<Models.AppCache>();
 
             // Add framework services.
@@ -54,6 +64,8 @@ namespace Games
             app.UseStaticFiles();
             app.UseMvc();
 
+            
+            //https://radu-matei.com/blog/aspnet-core-mvc-signalr/
             //https://docs.microsoft.com/en-us/aspnet/signalr/overview/advanced/dependency-injection
 
             app.UseSignalR(routes =>
