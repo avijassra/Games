@@ -14,9 +14,9 @@ namespace Games.Hubs
 
         //https://stackoverflow.com/questions/32459670/resolving-instances-with-asp-net-core-di
         //https://github.com/aspnet/SignalR/issues/68
-        // public GamesHub(AppCache appCache) {
-        //     this._cache = appCache;
-        // }
+        public GamesHub(AppCache appCache) {
+            this._cache = appCache;
+        }
 
         public Task MessageToPublish(string message)
         {
@@ -24,9 +24,9 @@ namespace Games.Hubs
         }
 
         public Task RegisterNewGame(Guid id) {
-            //this._cache.Games.Add(new GamesModel(id));
-            //return Clients.All.InvokeAsync("GamesWaitingPlayers", $"Game - {id} | {this._cache.Games.Count}");
-            return Clients.All.InvokeAsync("GamesWaitingPlayers", $"Game - {id}");
+            this._cache.Games.Add(new GamesModel(id));
+            return Clients.All.InvokeAsync("GamesWaitingPlayers", $"Game - {id} | {this._cache.Games.Count}");
+            //return Clients.All.InvokeAsync("GamesWaitingPlayers", $"Game - {id}");
         }
     }
 }
