@@ -22,7 +22,10 @@ namespace Games
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<Models.AppCache>();
+
             services.AddMvc();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +45,10 @@ namespace Games
             }
 
             app.UseStaticFiles();
+
+            app.UseSignalR( routes =>
+                routes.MapHub<Games.Hubs.GamesHub>("games")
+            );
 
             app.UseMvc(routes =>
             {

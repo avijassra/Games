@@ -36,7 +36,7 @@ import { PubSubService } from './services/pubsub.service';
             { path: 'tic-tac-toe', component: TicTacToeComponent },
             { path: '2048', component: Puzzle2048Component },
             { path: '**', redirectTo: 'home' }
-        ])
+        ], { useHash: true })
     ],
     providers: [
         TicTacToeFactoryService,
