@@ -2,6 +2,7 @@
   "name": "games",
   "private": true,
   "version": "0.0.0",
+  "environment": "development",
   "scripts": {},
   "dependencies": {
     "@angular/animations": "5.0.1",
