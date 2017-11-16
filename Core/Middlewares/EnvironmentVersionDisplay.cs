@@ -8,7 +8,6 @@ namespace Games.Core.Middlewares {
 
     public class EnvironmentVersionDisplay {
         private readonly IConfiguration _config;
-        private readonly IHostingEnvironment _env;
         private readonly RequestDelegate _next;
 
         private bool IsDisplayEnabled {
@@ -17,10 +16,9 @@ namespace Games.Core.Middlewares {
             }
         }
 
-        public EnvironmentVersionDisplay(IConfiguration config, IHostingEnvironment env, RequestDelegate next)
+        public EnvironmentVersionDisplay(IConfiguration config, RequestDelegate next)
         {
             this._config = config;
-            this._env = env;
             this._next = next;
         }
         
@@ -68,7 +66,7 @@ namespace Games.Core.Middlewares {
 
         private string AddFooter() {
             var version = this._config["Version"];
-            return $"<div class=\"app-version\" > {version}</div>";
+            return $"<div class=\"app-version\" >{version}</div>";
         }
     }
 }
